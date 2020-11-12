@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\api",
+    "\\src\\persistence",
+    "\\src\\persistence\\schemas"
+  ],
+  "SelectedNode": "\\src\\persistence\\schemas\\nodeSchema.ts",
+  "PreviewInSolutionExplorer": false
+}
