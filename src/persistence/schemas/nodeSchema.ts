@@ -1,9 +1,14 @@
 import { IUserPersistence } from '../../dataschema/IUserPersistence';
 import mongoose from 'mongoose';
-import { FLOAT } from 'sequelize/types';
 
 const NodeSchema = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            required: true,
+            index: true,
+        },
+
         name: {
             type: String,
             required: [true, 'Please enter node name'],
