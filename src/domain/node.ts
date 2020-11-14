@@ -13,6 +13,7 @@ interface NodeProps{
 }
 
 export class Node extends AggregateRoot<NodeProps>{
+    isFailure: any;
     
     get id (): UniqueEntityID {
         return this._id;
