@@ -1,13 +1,6 @@
 import { IUserPersistence } from '../../dataschema/IUserPersistence';
+import { Segment } from '../../domain/segment';
 import mongoose from 'mongoose';
-
-/*interface Segment {
-    startNode: String,
-    endNode: String,
-    duration: Number,
-    distance: Number,
-    order: Number,
-}*/
 
 const PathSchema = new mongoose.Schema(
     {
@@ -18,14 +11,14 @@ const PathSchema = new mongoose.Schema(
         },
 
         segmentList: {
-            type: [
-                {
+            type: [ Segment
+                /*{
                 startNode: String,
                 endNode: String,
                 duration: Number,
                 distance: Number,
                 order: Number,
-                }
+                }*/
             ],
             required: [true, 'Please enter the segment list'],
         },
@@ -44,4 +37,4 @@ const PathSchema = new mongoose.Schema(
     { timestamps: true },
 );
 
-export default mongoose.model<IUserPersistence & mongoose.Document>('NodeSchema', PathSchema);
+export default mongoose.model<IUserPersistence & mongoose.Document>('PathSchema', PathSchema);

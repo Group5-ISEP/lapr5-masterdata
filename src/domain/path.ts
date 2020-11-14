@@ -3,20 +3,14 @@ import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { Result } from "../core/logic/Result";
 //import { UserId } from "./userId"; Create path id instead??
 import { Guard } from "../core/logic/Guard";
-
-interface Segment {
-    startNode: string;
-    endNode: string;
-    duration: number;
-    distance: number;
-    order: number;
-}
+import { Segment } from "./segment";
 
 interface PathProps {
     name: string;
     segmentList: [Segment];
     firstNode: string;
     lastNode: string;
+    //isEmpty: boolean;
 }
 
 export class Path extends AggregateRoot<PathProps> {
