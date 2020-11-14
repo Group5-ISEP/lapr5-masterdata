@@ -2,9 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\api",
+    "\\src\\dto",
+    "\\src\\mappers",
     "\\src\\persistence",
-    "\\src\\persistence\\schemas"
+    "\\src\\persistence\\schemas",
+    "\\src\\repos",
+    "\\src\\services",
+    "\\src\\services\\IRepos",
+    "\\src\\services\\IServices"
   ],
   "SelectedNode": "\\src\\persistence\\schemas\\nodeSchema.ts",
   "PreviewInSolutionExplorer": false
