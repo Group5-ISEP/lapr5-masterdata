@@ -7,7 +7,7 @@ import { INodePersistence } from '../dataschema/INodePersistence';
 
 
 @Service()
-export default class NodeRepo implements INodeRepo {
+export default class nodeRepo implements INodeRepo {
     private models: any;
 
     constructor(

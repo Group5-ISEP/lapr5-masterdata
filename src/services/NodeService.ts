@@ -6,7 +6,7 @@ import INodeRepo from '../repos/IRepos/INodeRepo';
 import INodeService from "./IServices/INodeService";
 
 @Service()
-export default class NodeService implements INodeService {
+export default class nodeService implements INodeService {
 
     constructor(
         @Inject(config.services.node.name) private nodeServiceInstance : INodeRepo

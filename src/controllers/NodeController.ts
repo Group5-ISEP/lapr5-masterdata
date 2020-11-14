@@ -5,7 +5,7 @@ import { Node } from '../domain/node';
 import NodeService from '../services/NodeService';
 import INodeController from "./IControllers/INodeController";
 
-export default class NodeController implements INodeController{
+export default class nodeController implements INodeController{
     constructor(
         @Inject(config.services.node.name) private nodeServiceInstance : NodeService
     ) {}
