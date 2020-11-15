@@ -25,7 +25,8 @@ export default class nodeRepo implements INodeRepo {
     }
 
     public async save(node: Node): Promise<Node> {
-        const query = { domainId: node.id.toString() };
+        console.log("node repo save");
+        const query = { domainId: node.shortName.toString() };
 
         const nodeDocument = await this.nodeSchema.findOne(query);
 

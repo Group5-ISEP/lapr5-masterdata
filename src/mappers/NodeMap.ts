@@ -20,10 +20,10 @@ export class NodeMap extends Mapper<Node>{
         return roleOrError.isSuccess ? roleOrError.getValue() : null;
     }
 
-    public static toPersistence(role: Node): any {
+    public static toPersistence(node: Node): any {
         return {
-            domainId: role.id.toString(),
-            name: role.name
+            domainId: node.shortName.toString(),
+            name: node.name
         }
     }
 

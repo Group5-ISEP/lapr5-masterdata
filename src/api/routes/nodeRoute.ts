@@ -16,12 +16,11 @@ export default (app: Router) => {
     route.post('',
         celebrate({
             body: Joi.object({
-                name: Joi.string().required()
+                shortName: Joi.string().required()
             })
         }),
         (req, res, next) => {
             ctrl.save(req, res, next)
         }
     );
-    //To get the lines nodes of a line, use lineRoute (that calls nodeController)
 }
