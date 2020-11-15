@@ -3,7 +3,7 @@ import { celebrate, Joi } from 'celebrate';
 
 import { Container } from 'typedi';
 
-// import IDriverTypeController from '../../controllers/IControllers/IDriverTypeController';
+import IDriverTypeController from '../../controllers/IControllers/IDriverTypeController';
 
 import config from "../../../config";
 
@@ -12,9 +12,7 @@ const route = Router();
 export default (app: Router) => {
     app.use('/drivertypes', route);
 
-    /*
-      const ctrl = Container.get(config.controller.driverType.name) as IDriverTypeController;
-    */
+    const ctrl = Container.get(config.controller.driverType.name) as IDriverTypeController;
 
     route.post('',
         celebrate({
@@ -24,8 +22,7 @@ export default (app: Router) => {
             })
         }),
         (req, res, next) => {
-            res.status(200).send('FORMATO BODY VALIDO')
-            //ctrl.createRole(req, res, next)
+            ctrl.createDriverType(req, res, next)
         }
     );
 };
