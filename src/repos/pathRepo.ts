@@ -2,7 +2,6 @@ import { Service, Inject } from 'typedi';
 
 import IPathRepo from "../repos/IRepos/IPathRepo";
 import { Path } from "../domain/path";
-import { PathId } from '../domain/pathId';
 import { PathMap } from "../mappers/PathMap";
 
 import { Document, Model } from 'mongoose';
@@ -10,32 +9,33 @@ import { IPathPersistence } from '../dataschema/IPathPersistence';
 
 @Service()
 export default class PathRepo implements IPathRepo {
-  private models: any;
+    private models: any;
 
-  constructor(
-    @Inject('pathSchema') private pathSchema : Model<IPathPersistence & Document>,
-  ) {}
+    constructor(
+        @Inject('pathSchema') private pathSchema : Model<IPathPersistence & Document>,
+    ) {}
 
-  private createBaseQuery (): any {
-    return {
-      where: {},
+    private createBaseQuery (): any {
+        return {
+            where: {},
+        }
     }
-  }
 
-    public async exists(pathId: PathId | string ): Promise<boolean> {
+    //Implement by checking mongodb id
+    public async exists(path: Path): Promise<boolean> {
+        /*
+        const pathId = path.id;
 
-        const idX = pathId instanceof PathId ? (<PathId>pathId).id.toValue() : pathId;
-
-        //path.id.toString()??
-        const query = { id: idX }; 
+        const query = { id: pathId };
         const pathDocument = await this.pathSchema.findOne( query );
-
-        return !!pathDocument === true;
+        */
+        return false;//!!pathDocument === true;
     }
+    
 
     public async save(path: Path): Promise<Path> {
 
-        const query = { id: path.id.toString()}; 
+        const query = { id: path.id }; 
 
         const pathDocument = await this.pathSchema.findOne( query );
 
@@ -47,7 +47,7 @@ export default class PathRepo implements IPathRepo {
 
                 return PathMap.toDomain(pathCreated);
             } else {
-                pathDocument.id = path.id.toString();
+                pathDocument.id = path.id;
                 pathDocument.segmentList = path.segmentList;
                 pathDocument.firstNode = path.firstNode;
                 pathDocument.lastNode = path.lastNode;
@@ -60,13 +60,31 @@ export default class PathRepo implements IPathRepo {
         }
       }
 
-    public async findById(pathId: PathId | string): Promise<Path> {
+    /*
+    public async findById(pathId: string): Promise<Path> {
 
         const query = { id: pathId };
         const pathRecord = this.pathSchema.findOne(query);
 
         if (pathRecord != null) {
             return PathMap.toDomain(pathRecord);
+        }
+        else return null;
+    }
+    */
+
+    public async findByLine(line: string): Promise<Path[]> {
+
+        const query = { lineCode: line };
+        const pathRecord = this.pathSchema.find(query);
+
+        if (pathRecord != null) {
+            var paths = [];
+            (await pathRecord).forEach(function (value) {
+                //console.log(value);
+                paths.push(PathMap.toDomain(value));
+            });
+            return paths;
         }
         else return null;
     }
