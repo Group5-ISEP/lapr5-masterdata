@@ -6,15 +6,15 @@ import INodeRepo from '../repos/IRepos/INodeRepo';
 import INodeService from "./IServices/INodeService";
 
 @Service()
-export default class NodeService implements INodeService {
+export default class nodeService implements INodeService {
 
     constructor(
-        @Inject(config.services.node.name) private nodeServiceInstance : INodeRepo
+        @Inject(config.repos.node.name) private nodeRepoInstance : INodeRepo
     ) {}
     public async createNode(node: Node): Promise<Result<Node>> {
         try{
 
-            await this.nodeServiceInstance.save(node);
+            await this.nodeRepoInstance.save(node);
             return Result.ok<Node> (node)
 
         } catch(error){

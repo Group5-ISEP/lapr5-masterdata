@@ -2,12 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import { Inject } from 'typedi';
 import config from "../../config";
 import { Node } from '../domain/node';
-import NodeService from '../services/NodeService';
+import INodeService from '../services/IServices/INodeService';
 import INodeController from "./IControllers/INodeController";
 
-export default class NodeController implements INodeController{
+export default class nodeController implements INodeController{
     constructor(
-        @Inject(config.services.node.name) private nodeServiceInstance : NodeService
+        @Inject(config.services.node.name) private nodeServiceInstance : INodeService
     ) {}
 
     public async save(req: Request, res: Response, next: NextFunction) {
