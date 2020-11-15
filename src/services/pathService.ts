@@ -35,17 +35,14 @@ export default class PathService implements IPathService {
 
     public async getPath(pathID: string): Promise<Result<IPathDTO>> {
         try {
-            const path = await this.pathRepo.findByDomainId(pathDTO.id);
+            const path = await this.pathRepo.findByDomainId(pathID);
 
             if (path === null) {
                 return Result.fail<IPathDTO>("Path not found");
             }
             else {
-                path.name = pathDTO.name;
-                await this.pathRepo.save(path);
-
-                const pathDTOResult = PathMap.toDTO(path) as IPathDTO;
-                return Result.ok<IPathDTO>(pathDTOResult)
+                const pathDTO = PathMap.toDTO(path) as IPathDTO;
+                return Result.ok<IPathDTO>(pathDTO);
             }
         } catch (e) {
             throw e;
