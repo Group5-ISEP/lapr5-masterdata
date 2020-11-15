@@ -7,6 +7,10 @@
 node_modules/
 dist/
 
+
+# Build folder
+build/
+
 # Compiled Java class files
 *.class
 
@@ -49,3 +53,5 @@ Thumbs.db
 *.wmv
 
 .env
+
+.vs

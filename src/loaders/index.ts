@@ -26,6 +26,11 @@ export default async ({ expressApp }) => {
     path: config.controller.role.path
   }
 
+  const driverTypeController = {
+    name: config.controller.driverType.name,
+    path: config.controller.driverType.path
+  }
+
   const roleRepo = {
     name: config.repos.role.name,
     path: config.repos.role.path
@@ -48,7 +53,8 @@ export default async ({ expressApp }) => {
       roleSchema
     ],
     controllers: [
-      roleController
+      roleController,
+      driverTypeController
     ],
     repos: [
       roleRepo,
