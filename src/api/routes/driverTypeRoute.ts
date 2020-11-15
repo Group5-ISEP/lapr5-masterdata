@@ -17,7 +17,6 @@ export default (app: Router) => {
     route.post('',
         celebrate({
             body: Joi.object({
-                code: Joi.string().required(),
                 description: Joi.string().required()
             })
         }),
