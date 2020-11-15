@@ -1,1 +1,0 @@
-{"version":3,"file":"driverTypeSchema.js","sourceRoot":"","sources":["../../../../src/persistence/schemas/driverTypeSchema.ts"],"names":[],"mappings":";;;;;AACA,wDAAgC;AAEhC,MAAM,UAAU,GAAG,IAAI,kBAAQ,CAAC,MAAM,CAClC;IACI,WAAW,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE;CAChC,EACD,EAAE,UAAU,EAAE,IAAI,EAAE,CACvB,CAAC;AAEF,kBAAe,kBAAQ,CAAC,KAAK,CAAuC,kBAAkB,EAAE,UAAU,CAAC,CAAC"}
