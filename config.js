@@ -48,7 +48,11 @@ export default {
     driverType: {
       name: "DriverTypeController",
       path: "../controllers/driverTypeController"
-    }
+    },
+    node: {
+      name: "NodeController",
+      path: "../controllers/nodeController"
+    },
   },
 
   repos: {
@@ -59,6 +63,10 @@ export default {
     user: {
       name: "UserRepo",
       path: "../repos/userRepo"
+    },
+    node: {
+      name: "NodeRepo",
+      path: "../repos/nodeRepo"
     }
   },
 
@@ -66,6 +74,10 @@ export default {
     role: {
       name: "RoleService",
       path: "../services/roleService"
+    },
+    node: {
+      name: "NodeService",
+      path: "../services/nodeService"
     }
   },
 };
