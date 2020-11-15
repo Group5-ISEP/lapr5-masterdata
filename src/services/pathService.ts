@@ -2,6 +2,7 @@ import { Service, Inject } from 'typedi';
 import config from "../../config";
 import IPathDTO from '../dto/IPathDTO';
 import { Path } from "../domain/path";
+import { PathId } from "../domain/pathId";
 import IPathRepo from '../repos/IRepos/IPathRepo';
 import IPathService from './IServices/IPathService';
 import { Result } from "../core/logic/Result";
@@ -33,9 +34,9 @@ export default class PathService implements IPathService {
         }
     }
 
-    public async getPath(pathID: string): Promise<Result<IPathDTO>> {
+    public async getPath(pathID: PathId): Promise<Result<IPathDTO>> {
         try {
-            const path = await this.pathRepo.findByDomainId(pathID);
+            const path = await this.pathRepo.findById(pathID);
 
             if (path === null) {
                 return Result.fail<IPathDTO>("Path not found");
