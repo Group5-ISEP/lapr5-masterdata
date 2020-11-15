@@ -8,4 +8,12 @@ export class DriverTypeMap extends Mapper<DriverType>{
             description: driverType.description,
         } as IDriverTypeDTO;
     }
+
+    public static toPersistence(driverType: DriverType): any {
+        const raw = {
+            id: driverType.id.toString(),
+            description: driverType.description
+        }
+        return raw
+    }
 }
