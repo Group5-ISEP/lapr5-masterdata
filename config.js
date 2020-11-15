@@ -44,6 +44,10 @@ export default {
     role: {
       name: "RoleController",
       path: "../controllers/roleController"
+    },
+    driverType: {
+      name: "DriverTypeController",
+      path: "../controllers/driverTypeController"
     }
   },
 
