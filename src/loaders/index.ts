@@ -21,6 +21,12 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/roleSchema',
   };
 
+  const driverTypeSchema = {
+    // compare with the approach followed in repos and services
+    name: 'driverTypeSchema',
+    schema: '../persistence/schemas/driverTypeSchema',
+  };
+
   const roleController = {
     name: config.controller.role.name,
     path: config.controller.role.path
@@ -30,6 +36,15 @@ export default async ({ expressApp }) => {
     name: config.controller.driverType.name,
     path: config.controller.driverType.path
   }
+  const driverTypeService = {
+    name: config.services.driverType.name,
+    path: config.services.driverType.path
+  }
+  const driverTypeRepo = {
+    name: config.repos.driverType.name,
+    path: config.repos.driverType.path
+  }
+
 
   const roleRepo = {
     name: config.repos.role.name,
@@ -50,7 +65,8 @@ export default async ({ expressApp }) => {
     mongoConnection,
     schemas: [
       userSchema,
-      roleSchema
+      roleSchema,
+      driverTypeSchema
     ],
     controllers: [
       roleController,
@@ -58,10 +74,12 @@ export default async ({ expressApp }) => {
     ],
     repos: [
       roleRepo,
-      userRepo
+      userRepo,
+      driverTypeRepo
     ],
     services: [
-      roleService
+      roleService,
+      driverTypeService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

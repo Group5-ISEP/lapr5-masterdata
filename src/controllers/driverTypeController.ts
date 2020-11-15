@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import { Inject } from 'typedi';
 import config from "../../config";
+import IDriverTypeService from '../services/IServices/IDriverTypeService';
 
 import IDriverTypeController from "./IControllers/IDriverTypeController";
-//import IRoleService from '../services/IServices/IRoleService';
 //import IRoleDTO from '../dto/IRoleDTO';
 
 //import { Result } from "../core/logic/Result";
 
 export default class DriverTypeController implements IDriverTypeController /* TODO: extends ../core/infra/BaseController */ {
-    /*   constructor(
-           @Inject(config.services.role.name) private roleServiceInstance: IRoleService
-       ) { }
-   */
+    constructor(
+        @Inject(config.services.driverType.name) private driverTypeServiceInstance: IDriverTypeService
+    ) { }
+
     public async createDriverType(req: Request, res: Response, next: NextFunction) {
         res.status(200).send('PLACEHOLDER')
         /* try {
@@ -32,3 +32,5 @@ export default class DriverTypeController implements IDriverTypeController /* TO
     };
 
 }
+
+// TODO - IMPLEMENT CONTROLLER

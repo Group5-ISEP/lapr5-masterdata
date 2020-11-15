@@ -59,6 +59,10 @@ export default {
     user: {
       name: "UserRepo",
       path: "../repos/userRepo"
+    },
+    driverType: {
+      name: "DriverTypeRepo",
+      path: "../repos/driverTypeRepo"
     }
   },
 
@@ -66,6 +70,10 @@ export default {
     role: {
       name: "RoleService",
       path: "../services/roleService"
+    },
+    driverType: {
+      name: "DriverTypeService",
+      path: "../services/driverTypeService"
     }
   },
 };
