@@ -49,6 +49,10 @@ export default async ({ expressApp }) => {
     name: config.controller.vehicleType.name,
     path: config.controller.vehicleType.path
   }
+  const vehicleTypeService = {
+    name: config.services.vehicleType.name,
+    path: config.services.vehicleType.path
+  }
 
 
   const roleRepo = {
@@ -85,7 +89,8 @@ export default async ({ expressApp }) => {
     ],
     services: [
       roleService,
-      driverTypeService
+      driverTypeService,
+      vehicleTypeService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

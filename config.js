@@ -67,6 +67,10 @@ export default {
     driverType: {
       name: "DriverTypeRepo",
       path: "../repos/driverTypeRepo"
+    },
+    vehicleType: {
+      name: "VehicleTypeRepo",
+      path: "../repos/vehicleTypeRepo"
     }
   },
 
@@ -78,6 +82,10 @@ export default {
     driverType: {
       name: "DriverTypeService",
       path: "../services/driverTypeService"
+    },
+    vehicleType: {
+      name: "VehicleTypeService",
+      path: "../services/vehicleTypeService"
     }
   },
 };
