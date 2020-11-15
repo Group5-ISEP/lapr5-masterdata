@@ -48,6 +48,10 @@ export default {
     driverType: {
       name: "DriverTypeController",
       path: "../controllers/driverTypeController"
+    },
+    vehicleType: {
+      name: "VehicleTypeController",
+      path: "../controllers/vehicleTypeController"
     }
   },
 

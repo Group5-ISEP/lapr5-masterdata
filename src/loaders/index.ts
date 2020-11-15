@@ -45,6 +45,11 @@ export default async ({ expressApp }) => {
     path: config.repos.driverType.path
   }
 
+  const vehicleTypeController = {
+    name: config.controller.vehicleType.name,
+    path: config.controller.vehicleType.path
+  }
+
 
   const roleRepo = {
     name: config.repos.role.name,
@@ -70,7 +75,8 @@ export default async ({ expressApp }) => {
     ],
     controllers: [
       roleController,
-      driverTypeController
+      driverTypeController,
+      vehicleTypeController
     ],
     repos: [
       roleRepo,

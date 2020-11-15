@@ -9,7 +9,7 @@ const route = Router()
 export default (app: Router) => {
     app.use('/vehicletypes', route)
 
-    // const ctrl = Container.get(config.controller.vehicleType.name) as IVehicleTypeController;
+    const ctrl = Container.get(config.controller.vehicleType.name) as IVehicleTypeController;
 
     route.post('',
         celebrate({
@@ -24,8 +24,7 @@ export default (app: Router) => {
             })
         }),
         (req, res, next) => {
-            res.send(req.body) //PLACEHOLDER
-            //     ctrl.createDriverType(req, res, next)
+            ctrl.createVehicleType(req, res, next)
         }
     );
 
