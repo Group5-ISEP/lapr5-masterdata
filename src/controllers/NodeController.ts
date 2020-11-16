@@ -6,7 +6,7 @@ import INodeService from '../services/IServices/INodeService';
 import INodeController from "./IControllers/INodeController";
 
 export default class nodeController implements INodeController{
-    constructor(
+    public constructor(
         @Inject(config.services.node.name) private nodeServiceInstance : INodeService
     ) {}
 
@@ -21,7 +21,7 @@ export default class nodeController implements INodeController{
         } catch (error) {
             return next(error);
         }
-    }
+    };
     
     ListNodes(req: any, res: any, next: any) {
         throw new Error("Method not implemented.");

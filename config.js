@@ -52,7 +52,11 @@ export default {
     path: {
         name: "PathController",
         path: "../controllers/pathController"
-    }
+    },
+    node: {
+      name: "NodeController",
+      path: "../controllers/nodeController"
+    },
   },
 
   repos: {
@@ -63,10 +67,14 @@ export default {
     user: {
         name: "UserRepo",
         path: "../repos/userRepo"
-      },
+    },
     path: {
         name: "PathRepo",
         path: "../repos/pathRepo"
+    },
+    node: {
+      name: "NodeRepo",
+      path: "../repos/nodeRepo"
     }
   },
 
@@ -78,6 +86,10 @@ export default {
     path: {
         name: "PathServices",
         path: "../services/pathService"
+    },
+    node: {
+      name: "NodeService",
+      path: "../services/nodeService"
     }
   },
 };

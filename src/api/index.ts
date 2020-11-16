@@ -4,6 +4,7 @@ import user from './routes/userRoute';
 import role from './routes/roleRoute';
 import path from './routes/pathRoute';
 import driverTypes from './routes/driverTypeRoute';
+import node from './routes/nodeRoute';
 
 export default () => {
 	const app = Router();
@@ -13,6 +14,6 @@ export default () => {
 	role(app);
 	path(app);
 	driverTypes(app);
-
+	node(app);
 	return app
 }
