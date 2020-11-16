@@ -1,26 +1,28 @@
-import { IUserPersistence } from '../../dataschema/IUserPersistence';
-import { Segment } from '../../domain/segment';
+import { IPathPersistence } from '../../dataschema/IPathPersistence';
 import mongoose from 'mongoose';
+//import { Segment } from '../../domain/segment';
 
 const PathSchema = new mongoose.Schema(
     {
-        name: {
+        lineCode: {
             type: String,
-            required: [true, 'Please enter node name'],
-            index: true,
+            required: [true, 'Please enter the line of the path'],
+        },
+
+        direction: {
+            type: String,
+            required: [true, 'Please enter the paths direction']
         },
 
         segmentList: {
-            type: [ Segment
-                /*{
+            type: [{
                 startNode: String,
                 endNode: String,
                 duration: Number,
                 distance: Number,
-                order: Number,
-                }*/
-            ],
-            required: [true, 'Please enter the segment list'],
+                order: Number
+            }],
+            required: [true, 'Please enter the segment list of the path'],
         },
 
         firstNode: {
@@ -37,4 +39,4 @@ const PathSchema = new mongoose.Schema(
     { timestamps: true },
 );
 
-export default mongoose.model<IUserPersistence & mongoose.Document>('PathSchema', PathSchema);
+export default mongoose.model<IPathPersistence & mongoose.Document>('PathSchema', PathSchema);

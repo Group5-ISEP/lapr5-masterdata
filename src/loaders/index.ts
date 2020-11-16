@@ -21,6 +21,26 @@ export default async ({ expressApp }) => {
     schema: '../persistence/schemas/roleSchema',
   };
 
+  const pathSchema = {
+    name: 'pathSchema',
+    schema: '../persistence/schemas/pathSchema',
+  };
+
+  const pathController = {
+    name: config.controller.path.name,
+    path: config.controller.path.path
+  }
+
+  const pathRepo = {
+    name: config.repos.path.name,
+    path: config.repos.path.path
+  }
+
+  const pathService = {
+    name: config.services.path.name,
+    path: config.services.path.path
+  }
+
   const driverTypeSchema = {
     // compare with the approach followed in repos and services
     name: 'driverTypeSchema',
@@ -97,24 +117,28 @@ export default async ({ expressApp }) => {
       userSchema,
       roleSchema,
       driverTypeSchema,
-      nodeSchema
+      nodeSchema,
+      pathSchema
     ],
     controllers: [
       roleController,
       driverTypeController,
       vehicleTypeController,
-      nodeController
+      nodeController,
+      pathController
     ],
     repos: [
       roleRepo,
       userRepo,
       driverTypeRepo,
-      nodeRepo
+      nodeRepo,
+      pathRepo
     ],
     services: [
       roleService,
       driverTypeService,
       vehicleTypeService,
+      pathService,
       nodeService
     ]
   });

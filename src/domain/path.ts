@@ -1,29 +1,30 @@
 import { AggregateRoot } from "../core/domain/AggregateRoot";
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { Result } from "../core/logic/Result";
-//import { UserId } from "./userId"; Create path id instead??
 import { Guard } from "../core/logic/Guard";
 import { Segment } from "./segment";
 
 interface PathProps {
-    name: string;
+    lineCode: string;
+    direction: string;
     segmentList: [Segment];
     firstNode: string;
     lastNode: string;
-    //isEmpty: boolean;
 }
 
 export class Path extends AggregateRoot<PathProps> {
-    /*get id(): UniqueEntityID {
+
+    //Not used but exists for inner methods
+    get id(): UniqueEntityID {
         return this._id;
     }
+    
+    get lineCode(): string {
+        return this.props.lineCode;
+    }
 
-    get userId(): UserId {
-        return UserId.caller(this.id)
-    }*/
-
-    get name(): string {
-        return this.props.name;
+    get direction(): string {
+        return this.props.direction;
     }
 
     get segmentList(): [Segment] {
@@ -38,14 +39,15 @@ export class Path extends AggregateRoot<PathProps> {
         return this.props.lastNode;
     }
 
-    private constructor(props: PathProps) {
-        super(props);
+    private constructor(props: PathProps, id?: UniqueEntityID) {
+        super(props, id);
     }
 
     public static create(props: PathProps, id?: UniqueEntityID): Result<Path> {
 
         const guardedProps = [
-            { argument: props.name, argumentName: 'name' },
+            { argument: props.lineCode, argumentName: 'lineCode' },
+            { argument: props.direction, argumentName: 'direction' },
             { argument: props.segmentList, argumentName: 'segmentList' },
             { argument: props.firstNode, argumentName: 'firstNode' },
             { argument: props.lastNode, argumentName: 'lastNode' }
@@ -59,7 +61,7 @@ export class Path extends AggregateRoot<PathProps> {
         else {
             const path = new Path({
                 ...props
-            });
+            }, id);
 
             return Result.ok<Path>(path);
         }

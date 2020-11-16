@@ -42,12 +42,16 @@ export default {
 
   controller: {
     role: {
-      name: "RoleController",
-      path: "../controllers/roleController"
+        name: "RoleController",
+        path: "../controllers/roleController"
     },
     driverType: {
-      name: "DriverTypeController",
-      path: "../controllers/driverTypeController"
+        name: "DriverTypeController",
+        path: "../controllers/driverTypeController"
+    },
+    path: {
+        name: "PathController",
+        path: "../controllers/pathController"
     },
     vehicleType: {
       name: "VehicleTypeController",
@@ -61,12 +65,16 @@ export default {
 
   repos: {
     role: {
-      name: "RoleRepo",
-      path: "../repos/roleRepo"
+        name: "RoleRepo",
+        path: "../repos/roleRepo"
     },
     user: {
-      name: "UserRepo",
-      path: "../repos/userRepo"
+        name: "UserRepo",
+        path: "../repos/userRepo"
+    },
+    path: {
+        name: "PathRepo",
+        path: "../repos/pathRepo"
     },
     driverType: {
       name: "DriverTypeRepo",
@@ -84,8 +92,12 @@ export default {
 
   services: {
     role: {
-      name: "RoleService",
-      path: "../services/roleService"
+        name: "RoleService",
+        path: "../services/roleService"
+    },
+    path: {
+        name: "PathServices",
+        path: "../services/pathService"
     },
     driverType: {
       name: "DriverTypeService",

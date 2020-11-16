@@ -2,7 +2,6 @@ import { Service, Inject } from 'typedi';
 import config from "../../config";
 import IPathDTO from '../dto/IPathDTO';
 import { Path } from "../domain/path";
-import { PathId } from "../domain/pathId";
 import IPathRepo from '../repos/IRepos/IPathRepo';
 import IPathService from './IServices/IPathService';
 import { Result } from "../core/logic/Result";
@@ -34,7 +33,8 @@ export default class PathService implements IPathService {
         }
     }
 
-    public async getPath(pathID: PathId): Promise<Result<IPathDTO>> {
+    /*
+    public async getPath(pathID: string): Promise<Result<IPathDTO>> {
         try {
             const path = await this.pathRepo.findById(pathID);
 
@@ -49,5 +49,28 @@ export default class PathService implements IPathService {
             throw e;
         }
     }
+    */
 
+    public async getPathsOfLine(lineCode: string): Promise<Result<IPathDTO[]>> {
+        try {
+            const paths = await this.pathRepo.findByLine(lineCode);
+        
+            if (paths.length > 0) {
+                var pathsDTO = [];
+                paths.forEach(function (value) {
+                    //console.log(value);
+                    pathsDTO.push(PathMap.toDTO(value) as IPathDTO);
+                });
+                console.log("Found " + paths.length + " paths in line " + lineCode);
+                //console.log(pathsDTO);
+                return Result.ok<IPathDTO[]>(pathsDTO);
+            }
+            else {
+                return Result.fail<IPathDTO[]>("No paths with line " + lineCode + " found");
+            }
+
+        } catch (e) {
+            throw e;
+        }
+    }
 }
