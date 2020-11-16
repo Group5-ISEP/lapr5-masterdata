@@ -28,7 +28,7 @@ export default class DriverTypeRepo implements IDriverTypeRepo {
 
                 const driverTypeCreated = await this.driverTypeSchema.create(rawDriverType)
 
-                const returnValue = DriverType.create({ description: driverTypeCreated.description }, new UniqueEntityID(rawDriverType.id)).getValue();
+                const returnValue = DriverType.create({ description: driverTypeCreated.description }, new UniqueEntityID(rawDriverType._id)).getValue();
                 return returnValue
             } else {
                 driverTypeDocument.description = driverType.description
