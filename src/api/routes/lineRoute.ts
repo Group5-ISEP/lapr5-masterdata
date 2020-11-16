@@ -9,7 +9,7 @@ const route = Router();
 export default (app: Router) => {
     app.use('/lines', route);
 
-    //const ctrl = Container.get(config.controller.line.name) as ILineController;
+    const ctrl = Container.get(config.controller.line.name) as ILineController;
 
     route.post('',
         celebrate({
@@ -27,8 +27,7 @@ export default (app: Router) => {
             })
         }),
         (req, res, next) => {
-           res.status(200).send("OK")
-           // ctrl.createLine(req, res, next)
+            ctrl.createLine(req, res, next)
         }
     );
 };

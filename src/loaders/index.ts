@@ -87,6 +87,10 @@ export default async ({ expressApp }) => {
     path: config.repos.vehicleType.path
   }
 
+  const lineController = {
+    name: config.controller.line.name,
+    path: config.controller.line.path
+  }
 
   const nodeController = {
     name: config.controller.node.name,
@@ -135,7 +139,8 @@ export default async ({ expressApp }) => {
       driverTypeController,
       vehicleTypeController,
       nodeController,
-      pathController
+      pathController,
+      lineController
     ],
     repos: [
       roleRepo,

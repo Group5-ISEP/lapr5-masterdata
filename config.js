@@ -42,16 +42,16 @@ export default {
 
   controller: {
     role: {
-        name: "RoleController",
-        path: "../controllers/roleController"
+      name: "RoleController",
+      path: "../controllers/roleController"
     },
     driverType: {
-        name: "DriverTypeController",
-        path: "../controllers/driverTypeController"
+      name: "DriverTypeController",
+      path: "../controllers/driverTypeController"
     },
     path: {
-        name: "PathController",
-        path: "../controllers/pathController"
+      name: "PathController",
+      path: "../controllers/pathController"
     },
     vehicleType: {
       name: "VehicleTypeController",
@@ -61,20 +61,24 @@ export default {
       name: "NodeController",
       path: "../controllers/nodeController"
     },
+    line: {
+      name: "LineController",
+      path: "../controllers/lineController"
+    }
   },
 
   repos: {
     role: {
-        name: "RoleRepo",
-        path: "../repos/roleRepo"
+      name: "RoleRepo",
+      path: "../repos/roleRepo"
     },
     user: {
-        name: "UserRepo",
-        path: "../repos/userRepo"
+      name: "UserRepo",
+      path: "../repos/userRepo"
     },
     path: {
-        name: "PathRepo",
-        path: "../repos/pathRepo"
+      name: "PathRepo",
+      path: "../repos/pathRepo"
     },
     driverType: {
       name: "DriverTypeRepo",
@@ -92,12 +96,12 @@ export default {
 
   services: {
     role: {
-        name: "RoleService",
-        path: "../services/roleService"
+      name: "RoleService",
+      path: "../services/roleService"
     },
     path: {
-        name: "PathServices",
-        path: "../services/pathService"
+      name: "PathServices",
+      path: "../services/pathService"
     },
     driverType: {
       name: "DriverTypeService",
