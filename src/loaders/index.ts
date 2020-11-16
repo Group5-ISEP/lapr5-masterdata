@@ -26,6 +26,10 @@ export default async ({ expressApp }) => {
     name: 'driverTypeSchema',
     schema: '../persistence/schemas/driverTypeSchema',
   };
+  const nodeSchema = {
+    name: 'nodeSchema',
+    schema: '../persistence/schemas/nodeSchema',
+  }
 
   const roleController = {
     name: config.controller.role.name,
@@ -55,6 +59,11 @@ export default async ({ expressApp }) => {
   }
 
 
+  const nodeController = {
+    name: config.controller.node.name,
+    path: config.controller.node.path
+  }
+
   const roleRepo = {
     name: config.repos.role.name,
     path: config.repos.role.path
@@ -65,32 +74,48 @@ export default async ({ expressApp }) => {
     path: config.repos.user.path
   }
 
+  const nodeRepo = {
+    name: config.repos.node.name,
+    path: config.repos.node.path
+  }
+
+
   const roleService = {
     name: config.services.role.name,
     path: config.services.role.path
   }
 
+  const nodeService = {
+    name: config.services.node.name,
+    path: config.services.node.path
+  }
+
+  //TO DO:
   await dependencyInjectorLoader({
     mongoConnection,
     schemas: [
       userSchema,
       roleSchema,
-      driverTypeSchema
+      driverTypeSchema,
+      nodeSchema
     ],
     controllers: [
       roleController,
       driverTypeController,
-      vehicleTypeController
+      vehicleTypeController,
+      nodeController
     ],
     repos: [
       roleRepo,
       userRepo,
-      driverTypeRepo
+      driverTypeRepo,
+      nodeRepo
     ],
     services: [
       roleService,
       driverTypeService,
-      vehicleTypeService
+      vehicleTypeService,
+      nodeService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

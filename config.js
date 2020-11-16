@@ -52,7 +52,11 @@ export default {
     vehicleType: {
       name: "VehicleTypeController",
       path: "../controllers/vehicleTypeController"
-    }
+    },
+    node: {
+      name: "NodeController",
+      path: "../controllers/nodeController"
+    },
   },
 
   repos: {
@@ -71,6 +75,10 @@ export default {
     vehicleType: {
       name: "VehicleTypeRepo",
       path: "../repos/vehicleTypeRepo"
+    },
+    node: {
+      name: "NodeRepo",
+      path: "../repos/nodeRepo"
     }
   },
 
@@ -86,6 +94,10 @@ export default {
     vehicleType: {
       name: "VehicleTypeService",
       path: "../services/vehicleTypeService"
+    },
+    node: {
+      name: "NodeService",
+      path: "../services/nodeService"
     }
   },
 };

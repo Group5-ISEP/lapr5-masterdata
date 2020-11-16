@@ -4,7 +4,7 @@ import { Guard } from "../core/logic/Guard";
 import { Result } from "../core/logic/Result";
 
 interface NodeProps{
-    id: String;
+    shortName: String;
     name: String;
     depot: Boolean;
     reliefPoint: Boolean;
@@ -15,8 +15,8 @@ interface NodeProps{
 export class Node extends AggregateRoot<NodeProps>{
     isFailure: any;
     
-    get id (): UniqueEntityID {
-        return this._id;
+    get shortName (): String {
+        return this.props.shortName;
     }
 
     get name(): String {
@@ -46,7 +46,7 @@ export class Node extends AggregateRoot<NodeProps>{
     public static create(props: NodeProps, id?: UniqueEntityID): Result<Node>{
 
         const guardedProps = [
-            { argument: props.id, argumentName: 'id'},
+            { argument: props.shortName, argumentName: 'shortName'},
             { argument: props.name, argumentName: 'name'},
             { argument: props.depot, argumentName: 'depot'},
             { argument: props.reliefPoint, argumentName: 'reliefPoint'},
@@ -66,8 +66,5 @@ export class Node extends AggregateRoot<NodeProps>{
 
             return Result.ok<Node>(node);
         }
-    }
-
-        
-    
+    }    
 }

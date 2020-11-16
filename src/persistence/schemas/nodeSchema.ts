@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const NodeSchema = new mongoose.Schema(
     {
-        id: {
+        shortName: {
             type: String,
             required: true,
             index: true,
