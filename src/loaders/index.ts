@@ -91,6 +91,10 @@ export default async ({ expressApp }) => {
     name: config.controller.line.name,
     path: config.controller.line.path
   }
+  const lineService = {
+    name: config.services.line.name,
+    path: config.services.line.path
+  }
 
   const nodeController = {
     name: config.controller.node.name,
@@ -155,7 +159,8 @@ export default async ({ expressApp }) => {
       driverTypeService,
       vehicleTypeService,
       pathService,
-      nodeService
+      nodeService,
+      lineService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

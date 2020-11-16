@@ -114,6 +114,10 @@ export default {
     node: {
       name: "NodeService",
       path: "../services/nodeService"
+    },
+    line: {
+      name: "LineService",
+      path: "../services/lineService"
     }
   },
 };
