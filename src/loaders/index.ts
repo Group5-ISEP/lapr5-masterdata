@@ -69,6 +69,11 @@ export default async ({ expressApp }) => {
     path: config.repos.driverType.path
   }
 
+
+  const vehicleTypeSchema = {
+    name: "vehicleTypeSchema",
+    schema: '../persistence/schemas/vehicleTypeSchema',
+  }
   const vehicleTypeController = {
     name: config.controller.vehicleType.name,
     path: config.controller.vehicleType.path
@@ -76,6 +81,10 @@ export default async ({ expressApp }) => {
   const vehicleTypeService = {
     name: config.services.vehicleType.name,
     path: config.services.vehicleType.path
+  }
+  const vehicleTypeRepo = {
+    name: config.repos.vehicleType.name,
+    path: config.repos.vehicleType.path
   }
 
 
@@ -117,6 +126,7 @@ export default async ({ expressApp }) => {
       userSchema,
       roleSchema,
       driverTypeSchema,
+      vehicleTypeSchema,
       nodeSchema,
       pathSchema
     ],
@@ -131,6 +141,7 @@ export default async ({ expressApp }) => {
       roleRepo,
       userRepo,
       driverTypeRepo,
+      vehicleTypeRepo,
       nodeRepo,
       pathRepo
     ],
