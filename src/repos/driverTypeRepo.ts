@@ -1,6 +1,5 @@
 import { Document, Model } from "mongoose";
 import { Inject, Service } from "typedi";
-import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { IDriverTypePersistence } from "../dataschema/IDriverTypePersistence";
 import { DriverType } from "../domain/driverType";
 import { DriverTypeMap } from "../mappers/DriverTypeMap";
@@ -28,8 +27,7 @@ export default class DriverTypeRepo implements IDriverTypeRepo {
 
                 const driverTypeCreated = await this.driverTypeSchema.create(rawDriverType)
 
-                const returnValue = DriverType.create({ description: driverTypeCreated.description }, new UniqueEntityID(rawDriverType.id)).getValue();
-                return returnValue
+                return DriverTypeMap.toDomain(driverTypeCreated)
             } else {
                 driverTypeDocument.description = driverType.description
                 await driverTypeDocument.save()
