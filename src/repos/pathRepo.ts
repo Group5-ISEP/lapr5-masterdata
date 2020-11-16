@@ -60,19 +60,6 @@ export default class PathRepo implements IPathRepo {
         }
       }
 
-    /*
-    public async findById(pathId: string): Promise<Path> {
-
-        const query = { id: pathId };
-        const pathRecord = this.pathSchema.findOne(query);
-
-        if (pathRecord != null) {
-            return PathMap.toDomain(pathRecord);
-        }
-        else return null;
-    }
-    */
-
     public async findByLine(line: string): Promise<Path[]> {
 
         const query = { lineCode: line };
@@ -80,10 +67,11 @@ export default class PathRepo implements IPathRepo {
 
         if (pathRecord != null) {
             var paths = [];
-            (await pathRecord).forEach(function (value) {
-                //console.log(value);
-                paths.push(PathMap.toDomain(value));
+            (await pathRecord).forEach(async function (value) {
+                const p = await PathMap.toDomain(value);
+                paths.push(p);
             });
+            //console.log(paths);
             return paths;
         }
         else return null;
