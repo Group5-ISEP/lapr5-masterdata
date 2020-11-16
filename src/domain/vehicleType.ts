@@ -71,7 +71,6 @@ export class VehicleType extends AggregateRoot<VehicleTypeProps>{
 
     public static create(vehicleTypeDTO: IVehicleTypeDTO, id?: UniqueEntityID): Result<VehicleType> {
         const { name } = vehicleTypeDTO
-        //TODO - IMPLEMENT VERIFICATIONS TO ALL THE PARAMETERS
         if (!!name === false || name.length === 0) {
             return Result.fail<VehicleType>('Must provide a Vehicle type name')
         } else {
