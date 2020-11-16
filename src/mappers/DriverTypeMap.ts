@@ -11,7 +11,7 @@ export class DriverTypeMap extends Mapper<DriverType>{
 
     public static toPersistence(driverType: DriverType): any {
         const raw = {
-            _id: driverType.id.toString(),
+            id: driverType.id.toString(),
             description: driverType.description
         }
         return raw

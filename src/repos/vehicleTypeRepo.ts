@@ -38,7 +38,7 @@ export default class VehicleTypeRepo implements IVehicleTypeRepo {
                         emissions: vehicleTypeCreated.emissions,
                         energySource: vehicleTypeCreated.energySource
                     }
-                    , new UniqueEntityID(rawVehicleType._id)
+                    , new UniqueEntityID(rawVehicleType.id)
                 ).getValue();
                 return returnValue
             } else {

@@ -17,7 +17,7 @@ export class VehicleTypeMap extends Mapper<VehicleType>{
 
     public static toPersistence(VehicleType: VehicleType): any {
         const raw = {
-            _id: VehicleType.id.toString(),
+            id: VehicleType.id.toString(),
             name: VehicleType.name,
             autonomy: VehicleType.autonomy,
             costByKm: VehicleType.costByKm,
