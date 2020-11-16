@@ -17,7 +17,7 @@ export default class VehicleTypeController implements IVehicleTypeController /* 
             const vehicleTypeOrError = await this.vehicleTypeServiceInstance.createVehicleType(req.body as IVehicleTypeDTO) as Result<IVehicleTypeDTO>;
 
             if (vehicleTypeOrError.isFailure) {
-                return res.status(402).send();
+                return res.status(402).send(vehicleTypeOrError.errorValue());
             }
 
             const vehicleTypeDTO = vehicleTypeOrError.getValue();

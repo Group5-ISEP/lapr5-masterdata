@@ -70,10 +70,17 @@ export class VehicleType extends AggregateRoot<VehicleTypeProps>{
     }
 
     public static create(vehicleTypeDTO: IVehicleTypeDTO, id?: UniqueEntityID): Result<VehicleType> {
-        const { name } = vehicleTypeDTO
-        if (!!name === false || name.length === 0) {
+        const { name, autonomy, averageConsumption, averageSpeed, costByKm, emissions, energySource } = vehicleTypeDTO
+        if (!!name === false || name.trim().length === 0) {
             return Result.fail<VehicleType>('Must provide a Vehicle type name')
-        } else {
+        }
+        else if (!autonomy || !averageConsumption || !averageSpeed || !costByKm || !emissions ||
+            autonomy < 0 || averageConsumption < 0 || averageSpeed < 0 || costByKm < 0 || emissions < 0) {
+            return Result.fail<VehicleType>('Must provide positive numbers')
+        } else if (!energySource || /(Diesel)|(Gasoline)|(Electric)|(GPL)|(Gas)/.test(energySource) === false) {
+            return Result.fail<VehicleType>('Energy source must be of types Diesel, Gasoline, Electric, GPL, Gas')
+        }
+        else {
             const vehicleType = new VehicleType(vehicleTypeDTO, id);
             return Result.ok<VehicleType>(vehicleType)
         }
