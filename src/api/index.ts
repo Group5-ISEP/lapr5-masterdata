@@ -6,6 +6,7 @@ import path from './routes/pathRoute';
 import driverTypes from './routes/driverTypeRoute';
 import vehicleTypes from './routes/vehicleTypeRoute';
 import node from './routes/nodeRoute';
+import line from './routes/lineRoute';
 
 export default () => {
 	const app = Router();
@@ -17,5 +18,6 @@ export default () => {
 	driverTypes(app);
 	vehicleTypes(app)
 	node(app);
+	line(app)
 	return app
 }
