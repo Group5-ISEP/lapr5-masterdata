@@ -28,19 +28,7 @@ export default class VehicleTypeRepo implements IVehicleTypeRepo {
 
                 const vehicleTypeCreated = await this.vehicleTypeSchema.create(rawVehicleType)
 
-                const returnValue = VehicleType.create(
-                    {
-                        name: vehicleTypeCreated.name,
-                        autonomy: vehicleTypeCreated.autonomy,
-                        costByKm: vehicleTypeCreated.costByKm,
-                        averageConsumption: vehicleTypeCreated.averageConsumption,
-                        averageSpeed: vehicleTypeCreated.averageSpeed,
-                        emissions: vehicleTypeCreated.emissions,
-                        energySource: vehicleTypeCreated.energySource
-                    }
-                    , new UniqueEntityID(rawVehicleType.id)
-                ).getValue();
-                return returnValue
+                return VehicleTypeMap.toDomain(vehicleTypeCreated)
             } else {
                 vehicleTypeDocument.name = vehicleType.name
                 vehicleTypeDocument.autonomy = vehicleType.autonomy
