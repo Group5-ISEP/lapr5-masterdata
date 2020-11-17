@@ -26,7 +26,7 @@ export default class nodeRepo implements INodeRepo {
 
     public async save(node: Node): Promise<Node> {
         console.log("node repo save");
-        const query = { domainId: node.shortName.toString() };
+        const query = { shortName: node.shortName };
 
         const nodeDocument = await this.nodeSchema.findOne(query);
 
@@ -38,7 +38,14 @@ export default class nodeRepo implements INodeRepo {
 
                 return NodeMap.toDomain(nodeCreated);
             } else {
+                nodeDocument.shortName = node.shortName;
                 nodeDocument.name = node.name;
+                nodeDocument.depot = node.depot;
+                nodeDocument.reliefPoint = node.reliefPoint;
+                nodeDocument.longitude = node.longitude;
+                nodeDocument.latitude = node.latitude;
+
+
                 await nodeDocument.save();
 
                 return node;
@@ -47,11 +54,9 @@ export default class nodeRepo implements INodeRepo {
             throw err;
         }
     }
-    ListNodes(nodeId: string): Promise<Node> {
+
+    ListNodes(nodeId: string): Promise<Node[]> {
         throw new Error("Method not implemented.");
     }
-
-
-
 
 }

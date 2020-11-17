@@ -9,21 +9,30 @@ import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 
 export class NodeMap extends Mapper<Node>{
 
-    public static toDomain(node: any | Model<INodePersistence & Document>): Node {
-        const roleOrError = Node.create(
-            node,
-            new UniqueEntityID(node.domainId)
-        );
+    public static async toDomain(raw: any): Promise<Node> {
+        const nodeOrError = Node.create({
+            shortName: raw.shortName,
+            name: raw.name,
+            depot: raw.depot,
+            reliefPoint: raw.reliefPoint,
+            longitude: raw.longitude,
+            latitude: raw.latitude,
+        }, new UniqueEntityID(raw._id))
 
-        roleOrError.isFailure ? console.log(roleOrError.error) : '';
+        nodeOrError.isFailure ? console.log(nodeOrError.error) : '';
 
-        return roleOrError.isSuccess ? roleOrError.getValue() : null;
+        return nodeOrError.isSuccess ? nodeOrError.getValue() : null;
     }
 
     public static toPersistence(node: Node): any {
+        
         return {
-            domainId: node.shortName.toString(),
-            name: node.name
+            shortName: node.shortName,
+            name: node.name,
+            depot: node.depot,
+            reliefPoint: node.reliefPoint,
+            longitude: node.longitude,
+            latitude: node.latitude,
         }
     }
 

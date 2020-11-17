@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { Inject } from 'typedi';
 import config from "../../config";
+import { Result } from '../core/logic/Result';
 import { Node } from '../domain/node';
 import INodeService from '../services/IServices/INodeService';
 import INodeController from "./IControllers/INodeController";
@@ -23,7 +24,16 @@ export default class nodeController implements INodeController{
         }
     };
     
-    ListNodes(req: any, res: any, next: any) {
-        throw new Error("Method not implemented.");
-    }
+    public async ListNodes(req: Request, res: Response, next: NextFunction) {
+            try {
+                const nodeOrError = await this.nodeServiceInstance.ListNodes(req.body.shortName) as Result<Node>;
+    
+                if (nodeOrError.isFailure) {
+                    return res.status(400).send();
+                }
+            }
+            catch (e) {
+                return next(e);
+            }
+    };
 }
