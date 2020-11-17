@@ -1,7 +1,6 @@
 import { AggregateRoot } from "../core/domain/AggregateRoot";
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { Result } from "../core/logic/Result";
-import IVehicleTypeDTO from "../dto/IVehicleTypeDTO";
 
 interface VehicleTypeProps {
     name: string,
@@ -43,34 +42,12 @@ export class VehicleType extends AggregateRoot<VehicleTypeProps>{
         return this.props.energySource
     }
 
-    set name(value: string) {
-        this.props.name = value;
-    }
-    set autonomy(value: number) {
-        this.props.autonomy = value;
-    }
-    set costByKm(value: number) {
-        this.props.costByKm = value;
-    }
-    set averageConsumption(value: number) {
-        this.props.averageConsumption = value;
-    }
-    set averageSpeed(value: number) {
-        this.props.averageSpeed = value;
-    }
-    set emissions(value: number) {
-        this.props.emissions = value;
-    }
-    set energySource(value: string) {
-        this.props.energySource = value;
-    }
-
     private constructor(props: VehicleTypeProps, id?: UniqueEntityID) {
         super(props, id);
     }
 
-    public static create(vehicleTypeDTO: IVehicleTypeDTO, id?: UniqueEntityID): Result<VehicleType> {
-        const { name, autonomy, averageConsumption, averageSpeed, costByKm, emissions, energySource } = vehicleTypeDTO
+    public static create(vehicleTypeProps: VehicleTypeProps, id?: UniqueEntityID): Result<VehicleType> {
+        const { name, autonomy, averageConsumption, averageSpeed, costByKm, emissions, energySource } = vehicleTypeProps
         if (!!name === false || name.trim().length === 0) {
             return Result.fail<VehicleType>('Must provide a Vehicle type name')
         }
@@ -81,7 +58,7 @@ export class VehicleType extends AggregateRoot<VehicleTypeProps>{
             return Result.fail<VehicleType>('Energy source must be of types Diesel, Gasoline, Electric, GPL, Gas')
         }
         else {
-            const vehicleType = new VehicleType(vehicleTypeDTO, id);
+            const vehicleType = new VehicleType(vehicleTypeProps, id);
             return Result.ok<VehicleType>(vehicleType)
         }
     }

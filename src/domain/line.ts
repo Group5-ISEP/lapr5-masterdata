@@ -1,7 +1,6 @@
 import { AggregateRoot } from "../core/domain/AggregateRoot";
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { Result } from "../core/logic/Result";
-import ILineDTO from "../dto/ILineDTO";
 
 interface LineProps {
     code: string,
@@ -47,8 +46,8 @@ export class Line extends AggregateRoot<LineProps>{
         super(props, id);
     }
 
-    public static create(lineDTO: ILineDTO, id?: UniqueEntityID): Result<Line> {
-        const { code, name, terminalNodes, colorRGB, allowedDriverTypes, allowedVehicleTypes } = lineDTO
+    public static create(lineProps: LineProps, id?: UniqueEntityID): Result<Line> {
+        const { code, name, terminalNodes } = lineProps
         if (!!name === false || name.trim().length === 0) {
             return Result.fail<Line>('Must provide a name')
         } else if (!code || code.trim().length === 0) {
@@ -58,7 +57,7 @@ export class Line extends AggregateRoot<LineProps>{
             return Result.fail<Line>('Must provide two end nodes of the line')
         }
         else {
-            const line = new Line(lineDTO, id);
+            const line = new Line(lineProps, id);
             return Result.ok<Line>(line)
         }
     }
