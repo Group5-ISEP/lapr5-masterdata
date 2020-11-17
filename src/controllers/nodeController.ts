@@ -6,7 +6,7 @@ import { Node } from '../domain/node';
 import INodeService from '../services/IServices/INodeService';
 import INodeController from "./IControllers/INodeController";
 
-export default class nodeController implements INodeController{
+export default class NodeController implements INodeController{
     public constructor(
         @Inject(config.services.node.name) private nodeServiceInstance : INodeService
     ) {}
@@ -24,9 +24,9 @@ export default class nodeController implements INodeController{
         }
     };
     
-    public async ListNodes(req: Request, res: Response, next: NextFunction) {
+    public async listNodes(req: Request, res: Response, next: NextFunction) {
             try {
-                const nodeOrError = await this.nodeServiceInstance.ListNodes(req.body.shortName) as Result<Node>;
+                const nodeOrError = await this.nodeServiceInstance.listNodes(req.body.shortName) as Result<Node>;
     
                 if (nodeOrError.isFailure) {
                     return res.status(400).send();

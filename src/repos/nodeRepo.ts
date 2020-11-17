@@ -7,18 +7,12 @@ import { INodePersistence } from '../dataschema/INodePersistence';
 
 
 @Service()
-export default class nodeRepo implements INodeRepo {
+export default class NodeRepo implements INodeRepo {
     private models: any;
 
     constructor(
         @Inject('nodeSchema') private nodeSchema: Model<INodePersistence & Document>,
     ) { }
-
-    private createBaseQuery(): any {
-        return {
-            where: {},
-        }
-    }
 
     exists(t: Node): Promise<boolean> {
         throw new Error("Method not implemented.");
@@ -55,7 +49,7 @@ export default class nodeRepo implements INodeRepo {
         }
     }
 
-    ListNodes(nodeId: string): Promise<Node[]> {
+    listNodes(nodeId: string): Promise<Node[]> {
         throw new Error("Method not implemented.");
     }
 

@@ -6,7 +6,7 @@ import INodeRepo from '../repos/IRepos/INodeRepo';
 import INodeService from "./IServices/INodeService";
 
 @Service()
-export default class nodeService implements INodeService {
+export default class NodeService implements INodeService {
 
     constructor(
         @Inject(config.repos.node.name) private nodeRepoInstance : INodeRepo
@@ -22,7 +22,7 @@ export default class nodeService implements INodeService {
         }
     }
 
-    ListNodes(nodeId: string): Promise<Result<Node>>{
+    listNodes(nodeId: string): Promise<Result<Node>>{
         throw new Error("Method not implemented.");
     }
 }
