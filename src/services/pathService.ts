@@ -33,42 +33,21 @@ export default class PathService implements IPathService {
         }
     }
 
-    /*
-    public async getPath(pathID: string): Promise<Result<IPathDTO>> {
-        try {
-            const path = await this.pathRepo.findById(pathID);
-
-            if (path === null) {
-                return Result.fail<IPathDTO>("Path not found");
-            }
-            else {
-                const pathDTO = PathMap.toDTO(path) as IPathDTO;
-                return Result.ok<IPathDTO>(pathDTO);
-            }
-        } catch (e) {
-            throw e;
-        }
-    }
-    */
-
     public async getPathsOfLine(lineCode: string): Promise<Result<IPathDTO[]>> {
         try {
             const paths = await this.pathRepo.findByLine(lineCode);
-        
+            console.log("Found " + paths.length + " paths in line " + lineCode);
+            var pathsDTO = [];
+            for (var i = 0; i < paths.length; i++) {
+                const DTO = PathMap.toDTO(paths[i]) as IPathDTO;
+                pathsDTO.push(DTO);
+            }
             if (paths.length > 0) {
-                var pathsDTO = [];
-                paths.forEach(function (value) {
-                    //console.log(value);
-                    pathsDTO.push(PathMap.toDTO(value) as IPathDTO);
-                });
-                console.log("Found " + paths.length + " paths in line " + lineCode);
-                //console.log(pathsDTO);
                 return Result.ok<IPathDTO[]>(pathsDTO);
             }
             else {
                 return Result.fail<IPathDTO[]>("No paths with line " + lineCode + " found");
             }
-
         } catch (e) {
             throw e;
         }

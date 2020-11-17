@@ -13,37 +13,36 @@ interface PathProps {
 }
 
 export class Path extends AggregateRoot<PathProps> {
-
     //Not used but exists for inner methods
-    get id(): UniqueEntityID {
+    get id (): UniqueEntityID {
         return this._id;
     }
     
-    get lineCode(): string {
+    get lineCode (): string {
         return this.props.lineCode;
     }
 
-    get direction(): string {
+    get direction (): string {
         return this.props.direction;
     }
 
-    get segmentList(): [Segment] {
+    get segmentList (): [Segment] {
         return this.props.segmentList;
     }
 
-    get firstNode(): string {
+    get firstNode (): string {
         return this.props.firstNode;
     }
 
-    get lastNode(): string {
+    get lastNode (): string {
         return this.props.lastNode;
     }
 
-    private constructor(props: PathProps, id?: UniqueEntityID) {
+    private constructor (props: PathProps, id?: UniqueEntityID) {
         super(props, id);
     }
 
-    public static create(props: PathProps, id?: UniqueEntityID): Result<Path> {
+    public static create (props: PathProps, id?: UniqueEntityID): Result<Path> {
 
         const guardedProps = [
             { argument: props.lineCode, argumentName: 'lineCode' },

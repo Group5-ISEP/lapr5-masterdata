@@ -15,12 +15,12 @@ export default (app: Router) => {
         celebrate({
             body: Joi.object({
                 name: Joi.string().required(),
-                autonomy: Joi.number().integer().positive().required(),
-                costByKm: Joi.number().positive().required(),
-                averageConsumption: Joi.number().positive().required(),
-                averageSpeed: Joi.number().positive().required(),
-                emissions: Joi.number().positive().required(),
-                energySource: Joi.string().regex(/(Diesel)|(Gasoline)|(Electric)|(GPL)|(Gas)/, 'fuels').required()
+                autonomy: Joi.number().integer().required(),
+                costByKm: Joi.number().required(),
+                averageConsumption: Joi.number().required(),
+                averageSpeed: Joi.number().required(),
+                emissions: Joi.number().required(),
+                energySource: Joi.string().required()
             })
         }),
         (req, res, next) => {

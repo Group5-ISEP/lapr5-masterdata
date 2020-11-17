@@ -15,8 +15,6 @@ export default class PathController implements IPathController {
 
     public async createPath(req: Request, res: Response, next: NextFunction) {
         try {
-            //console.log("Accessed pathController.createPath function");
-
             const pathOrError = await this.pathServiceInstance.createPath(req.body as IPathDTO) as Result<IPathDTO>;
 
             if (pathOrError.isFailure) {
@@ -31,7 +29,6 @@ export default class PathController implements IPathController {
         }
     };
 
-    //Get paths of a line??
     public async getPathsOfLine(req: Request, res: Response, next: NextFunction) {
         try {
             const pathsOrError = await this.pathServiceInstance.getPathsOfLine(req.body.lineCode) as Result<IPathDTO[]>;

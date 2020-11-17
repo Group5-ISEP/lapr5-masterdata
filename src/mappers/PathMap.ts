@@ -14,17 +14,13 @@ export class PathMap extends Mapper<Path> {
 
     public static toDTO(path: Path): IPathDTO {
         /*
-        var pid;
-        if (path.id == null) {
-            pid = null;
-        }
-        else {
-            pid = path.id.toString();
-        }
-        */
+        console.log("++++++Domain object:+++++++");
         console.log(path);
+        console.log("+++++++++++++++++++++++++++");
+        console.log(path.firstNode);
+        */
         return {
-            //id: pid,
+            id: path.id.toString(),
             lineCode: path.lineCode,
             direction: path.direction,
             segmentList: path.segmentList,
@@ -34,7 +30,6 @@ export class PathMap extends Mapper<Path> {
     }
 
     public static async toDomain(raw: any): Promise<Path> {
-
         const pathOrError = Path.create({
             lineCode: raw.lineCode,
             direction: raw.direction,
@@ -44,12 +39,11 @@ export class PathMap extends Mapper<Path> {
         }, new UniqueEntityID(raw._id))
 
         pathOrError.isFailure ? console.log(pathOrError.error) : '';
-        //console.log(pathOrError);
+
         return pathOrError.isSuccess ? pathOrError.getValue() : null;
     }
 
     public static toPersistence(path: Path): any {
-        //console.log("Trying to persist the Path data object");
         const a = {
             id: path.id,
             lineCode: path.lineCode,

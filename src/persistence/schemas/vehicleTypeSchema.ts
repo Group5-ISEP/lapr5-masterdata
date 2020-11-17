@@ -1,11 +1,21 @@
-import { IUserPersistence } from '../../dataschema/IUserPersistence';
 import mongoose from 'mongoose';
+import IVehicleTypePersistence from '../../dataschema/IVehicleTypePersistence';
 
-const VehicleType = new mongoose.Schema(
+const vehicleType = new mongoose.Schema(
     {
-        description: { type: String }
+        name: {
+            type: String,
+            required: [true, 'Please enter type name'],
+            index: true
+        },
+        autonomy: Number,
+        costByKm: Number,
+        averageConsumption: Number,
+        averageSpeed: Number,
+        emissions: Number,
+        energySource: String
     },
     { timestamps: true },
 );
 
-export default mongoose.model<IUserPersistence & mongoose.Document>('VehicleTypeSchema', VehicleType);
+export default mongoose.model<IVehicleTypePersistence & mongoose.Document>('VehicleType', vehicleType);
