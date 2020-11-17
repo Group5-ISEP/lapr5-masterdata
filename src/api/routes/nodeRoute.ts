@@ -5,7 +5,6 @@ import { Container } from 'typedi';
 
 import INodeController from '../../controllers/IControllers/INodeController';
 import config from "../../../config";
-import { join } from 'lodash';
 
 const route = Router();
 
@@ -36,5 +35,5 @@ export default (app: Router) => {
                 lineCode: Joi.string().required()
             })
         }),
-        (req, res, next) => ctrl.ListNodes(req, res, next));
+        (req, res, next) => ctrl.listNodes(req, res, next));
 }

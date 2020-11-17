@@ -8,7 +8,6 @@ import { INodePersistence } from '../dataschema/INodePersistence';
 
 @Service()
 export default class NodeRepo implements INodeRepo {
-    private models: any;
 
     constructor(
         @Inject('nodeSchema') private nodeSchema: Model<INodePersistence & Document>,
@@ -19,7 +18,7 @@ export default class NodeRepo implements INodeRepo {
     }
 
     public async save(node: Node): Promise<Node> {
-        console.log("node repo save");
+
         const query = { shortName: node.shortName };
 
         const nodeDocument = await this.nodeSchema.findOne(query);
