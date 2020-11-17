@@ -91,6 +91,10 @@ export default {
     node: {
       name: "NodeRepo",
       path: "../repos/nodeRepo"
+    },
+    line: {
+      name: "LineRepo",
+      path: "../repos/lineRepo"
     }
   },
 

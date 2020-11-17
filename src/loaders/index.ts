@@ -87,6 +87,14 @@ export default async ({ expressApp }) => {
     path: config.repos.vehicleType.path
   }
 
+  const lineSchema = {
+    name: "lineSchema",
+    schema: "../persistence/schemas/lineSchema"
+  }
+  const lineRepo = {
+    name: config.repos.line.name,
+    path: config.repos.line.path
+  }
   const lineController = {
     name: config.controller.line.name,
     path: config.controller.line.path
@@ -136,7 +144,8 @@ export default async ({ expressApp }) => {
       driverTypeSchema,
       vehicleTypeSchema,
       nodeSchema,
-      pathSchema
+      pathSchema,
+      lineSchema
     ],
     controllers: [
       roleController,
@@ -152,7 +161,8 @@ export default async ({ expressApp }) => {
       driverTypeRepo,
       vehicleTypeRepo,
       nodeRepo,
-      pathRepo
+      pathRepo,
+      lineRepo
     ],
     services: [
       roleService,

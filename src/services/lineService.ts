@@ -1,34 +1,36 @@
-import { Service } from "typedi";
+import { Inject, Service } from "typedi";
 import { Result } from "../core/logic/Result";
 import ILineDTO from "../dto/ILineDTO";
 import ILineService from "./IServices/ILineService";
+import config from '../../config';
+import ILineRepo from "../repos/IRepos/ILineRepo";
+import { Line } from "../domain/line";
+import { LineMap } from "../mappers/LineMap";
 
 @Service()
 export default class LineService implements ILineService {
-    /* constructor(
-         @Inject(config.repos.Line.name) private LineRepo: ILineRepo
-     ) { }
- */
+    constructor(
+        @Inject(config.repos.line.name) private lineRepo: ILineRepo
+    ) { }
+
     public async createLine(lineDTO: ILineDTO): Promise<Result<ILineDTO>> {
-        /* try {
- 
-             const LineOrError = await Line.create(LineDTO);
- 
-             if (LineOrError.isFailure) {
-                 return Result.fail<ILineDTO>(LineOrError.errorValue());
-             }
- 
-             const LineResult = LineOrError.getValue();
- 
-             await this.LineRepo.save(LineResult);
- 
-             const LineDTOResult = LineMap.toDTO(LineResult) as ILineDTO;
-             return Result.ok<ILineDTO>(LineDTOResult)
-         } catch (e) {
-             throw e;
-         }
-         */
-        return Result.ok<ILineDTO>(lineDTO)
+        try {
+
+            const lineOrError = await Line.create(lineDTO);
+
+            if (lineOrError.isFailure) {
+                return Result.fail<ILineDTO>(lineOrError.errorValue());
+            }
+
+            const lineResult = lineOrError.getValue();
+
+            await this.lineRepo.save(lineResult);
+
+            const lineDTOResult = LineMap.toDTO(lineResult) as ILineDTO;
+            return Result.ok<ILineDTO>(lineDTOResult)
+        } catch (e) {
+            throw e;
+        }
     }
 
 }
