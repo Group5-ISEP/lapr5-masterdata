@@ -1,6 +1,6 @@
 
 export interface INodePersistence {
-    id: String;
+    shortName: String;
     name: String;
     depot: Boolean;
     reliefPoint: Boolean;
