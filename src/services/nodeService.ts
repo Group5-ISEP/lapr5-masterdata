@@ -3,7 +3,6 @@ import config from '../../config';
 import { Result } from '../core/logic/Result';
 import { Node } from "../domain/node";
 import INodeDTO from '../dto/INodeDTO';
-import IPathDTO from '../dto/IPathDTO';
 import { NodeMap } from '../mappers/NodeMap';
 import INodeRepo from '../repos/IRepos/INodeRepo';
 import INodeService from "./IServices/INodeService";
@@ -11,6 +10,7 @@ import INodeService from "./IServices/INodeService";
 @Service()
 export default class NodeService implements INodeService {
     [x: string]: any;
+
 
     constructor(
         @Inject(config.repos.node.name) private nodeRepoInstance: INodeRepo
@@ -35,20 +35,26 @@ export default class NodeService implements INodeService {
         }
     }
 
-    public async listNodes(nodeId: string): Promise<Result<INodeDTO[]>> {
+    public async listNodes(filter: string): Promise<Result<INodeDTO[]>> {
+        console.log(filter);
         try {
-            const nodes = await this.nodeRepo.listNodes(nodeId);
-            console.log("Found " + nodes.length + " nodes starting by " + nodeId);
+
+            const nodes = await this.nodeRepoInstance.listNodes(filter);
+
             var nodesDTO = [];
             for (var i = 0; i < nodes.length; i++) {
                 const DTO = NodeMap.toDTO(nodes[i]) as INodeDTO;
                 nodesDTO.push(DTO);
+
             }
+
             if (nodes.length > 0) {
+                console.log("Found " + nodes.length + " nodes starting by " + filter);
                 return Result.ok<INodeDTO[]>(nodesDTO);
             }
             else {
-                return Result.fail<INodeDTO[]>("No paths with line " + nodeId + " found");
+                console.log("Found " + 0 + " nodes");
+                return Result.fail<INodeDTO[]>("No nodes starting " + filter + " found");
             }
         } catch (e) {
             throw e;

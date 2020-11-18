@@ -12,9 +12,6 @@ export default class NodeRepo implements INodeRepo {
     constructor(
         @Inject('nodeSchema') private nodeSchema: Model<INodePersistence & Document>,
     ) { }
-    listNodes(name: string): Promise<Node[]> {
-        throw new Error('Method not implemented.');
-    }
 
     exists(t: Node): Promise<boolean> {
         throw new Error("Method not implemented.");
@@ -51,35 +48,35 @@ export default class NodeRepo implements INodeRepo {
         }
     }
 
-    public async listNode(name: string): Promise<Node[]> {
+    public async listNodes(filter: string): Promise<Node[]> {
+        //TO DO order by
+        //order by: add variavel order atraves de tudo; req.body.order;
+                    //repo: ordenar lista nodes antes de retornar
 
-        const query = { lineCode: name };
-        const nodeRecord = this.nodeSchema.find(query);
-
-        if (nodeRecord != null) {
+       
+    try {
+        const allNodes = this.nodeSchema.find({});  //find all  
+         if (allNodes != null) {
             var nodes = [];
-            (await nodeRecord).forEach(async function (value) {
-                const p = await NodeMap.toDomain(value);
-                if(p.startsWith(name)){
+            (await allNodes).forEach(async function (node) {
+                const p = await NodeMap.toDomain(node);
+                console.log(".."+p.id.toString());
+                if(p.name.startsWith(filter) || p.id.toString().startsWith(filter)){
+                   
                     nodes.push(p);
                 }
                 
             });
-            return nodes;
+        
         }
 
-        if (nodeRecord != null) {
-            var nodes = [];
-            (await nodeRecord).forEach(async function (ID) {
-                const p = await NodeMap.toDomain(ID);
-                if(p.startsWith(name)){
-                    nodes.push(p);
-                }
-                
-            });
-            return nodes;
-        }
-        else return null;
+    //se nodes.length > 0 
+    // ordenar         
+    return nodes;   
+
+    } catch (err) {
+        throw err;
+
     }
 
-}
+}}

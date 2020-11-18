@@ -13,6 +13,7 @@ interface NodeProps{
 }
 
 export class Node extends AggregateRoot<NodeProps>{
+    [x: string]: any;
     isFailure: any;
     
     get shortName (): String {
