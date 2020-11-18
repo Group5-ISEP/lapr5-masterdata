@@ -12,6 +12,9 @@ export default class NodeRepo implements INodeRepo {
     constructor(
         @Inject('nodeSchema') private nodeSchema: Model<INodePersistence & Document>,
     ) { }
+    listNodes(name: string): Promise<Node[]> {
+        throw new Error('Method not implemented.');
+    }
 
     exists(t: Node): Promise<boolean> {
         throw new Error("Method not implemented.");
@@ -48,8 +51,35 @@ export default class NodeRepo implements INodeRepo {
         }
     }
 
-    listNodes(nodeId: string): Promise<Node[]> {
-        throw new Error("Method not implemented.");
+    public async listNode(name: string): Promise<Node[]> {
+
+        const query = { lineCode: name };
+        const nodeRecord = this.nodeSchema.find(query);
+
+        if (nodeRecord != null) {
+            var nodes = [];
+            (await nodeRecord).forEach(async function (value) {
+                const p = await NodeMap.toDomain(value);
+                if(p.startsWith(name)){
+                    nodes.push(p);
+                }
+                
+            });
+            return nodes;
+        }
+
+        if (nodeRecord != null) {
+            var nodes = [];
+            (await nodeRecord).forEach(async function (ID) {
+                const p = await NodeMap.toDomain(ID);
+                if(p.startsWith(name)){
+                    nodes.push(p);
+                }
+                
+            });
+            return nodes;
+        }
+        else return null;
     }
 
 }
