@@ -60,7 +60,6 @@ export default class NodeRepo implements INodeRepo {
             var nodes = [];
             (await allNodes).forEach(async function (node) {
                 const p = await NodeMap.toDomain(node);
-                console.log(".."+p.id.toString());
                 if(p.name.startsWith(filter) || p.id.toString().startsWith(filter)){
                    
                     nodes.push(p);

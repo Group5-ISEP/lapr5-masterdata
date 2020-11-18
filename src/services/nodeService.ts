@@ -36,7 +36,6 @@ export default class NodeService implements INodeService {
     }
 
     public async listNodes(filter: string): Promise<Result<INodeDTO[]>> {
-        console.log(filter);
         try {
 
             const nodes = await this.nodeRepoInstance.listNodes(filter);
@@ -45,7 +44,6 @@ export default class NodeService implements INodeService {
             for (var i = 0; i < nodes.length; i++) {
                 const DTO = NodeMap.toDTO(nodes[i]) as INodeDTO;
                 nodesDTO.push(DTO);
-
             }
 
             if (nodes.length > 0) {
