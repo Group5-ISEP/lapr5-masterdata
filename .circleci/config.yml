@@ -9,19 +9,13 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: echo "STARTING TO BUILD"
-      - run:
-        name: Build
-        command: yarn build
+      - run: yarn build
   test:
     docker:
       - image: cimg/node:15.2.1
     steps:
       - checkout
-      - run: echo "STARTING TESTS"
-      - run:
-        name: Test
-        command: yarn test
+      - run: yarn test
 
 # Orchestrate our job run sequence
 workflows:
