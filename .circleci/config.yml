@@ -9,12 +9,20 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - node/install-yarn
+      - node/install-packages:
+          pkg-manager: yarn
       - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test:
     docker:
       - image: cimg/node:15.2.1
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - run: yarn test
 
 # Orchestrate our job run sequence
