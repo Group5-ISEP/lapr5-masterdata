@@ -1,6 +1,6 @@
 import { Service, Inject } from 'typedi';
 
-import IPathRepo from "../repos/IRepos/IPathRepo";
+import IPathRepo from "./IRepos/IPathRepo";
 import { Path } from "../domain/path";
 import { PathMap } from "../mappers/PathMap";
 
