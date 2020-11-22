@@ -26,7 +26,7 @@ export default class RoleRepo implements IRoleRepo {
 
     const idX = roleId instanceof RoleId ? (<RoleId>roleId).id.toValue() : roleId;
 
-    const query = { domainId: idX };
+    const query = { domainId: "PLACEHOLDER" };
     const roleDocument = await this.roleSchema.findOne(query);
 
     return !!roleDocument === true;
@@ -56,7 +56,7 @@ export default class RoleRepo implements IRoleRepo {
   }
 
   public async findByDomainId(roleId: RoleId | string): Promise<Role> {
-    const query = { domainId: roleId };
+    const query = { domainId: "PLACEHOLDER" };
     const roleRecord = await this.roleSchema.findOne(query);
 
     if (roleRecord != null) {
