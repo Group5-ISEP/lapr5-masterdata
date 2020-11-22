@@ -9,10 +9,8 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - node/install-yarn
       - node/install-packages:
-          pkg-manager: yarn
-      - run: yarn build
+      - run: npm run build
       - persist_to_workspace:
           root: .
           paths:
@@ -23,7 +21,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: yarn test
+      - run: npm run test
 
 # Orchestrate our job run sequence
 workflows:
