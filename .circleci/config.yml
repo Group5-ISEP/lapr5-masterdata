@@ -9,7 +9,7 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - node/install-packages:
+      - node/install-packages
       - run: npm run build
       - persist_to_workspace:
           root: .
