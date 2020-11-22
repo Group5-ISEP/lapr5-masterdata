@@ -1,0 +1,31 @@
+orbs:
+  node: circleci/node@4.1.0
+
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+        name: Build
+        command: yarn build
+  test:
+    docker:
+      - image: cimg/node:15.2.1
+    steps:
+      - checkout
+      - run:
+        name: Test
+        command: yarn test
+
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
