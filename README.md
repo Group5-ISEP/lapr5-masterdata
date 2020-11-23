@@ -7,7 +7,8 @@
 <a href="https://cloud.mongodb.com/v2/5fb949140285eb2cbff90873#clusters">
  <img width="80" height="80" src="https://www.pngrepo.com/png/303232/180/mongodb-logo.png" >
 </a>
----
+
+
 # Master Data
 ## Bulletproof Node.js architecture 🛡️
 
