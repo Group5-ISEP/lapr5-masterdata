@@ -56,4 +56,8 @@ Thumbs.db
 
 .vs
 
+# VS Code config
 .vscode
+
+# Jest coverage
+coverage/
