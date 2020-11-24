@@ -23,7 +23,7 @@ export class DriverType extends AggregateRoot<DriverTypeProps>{
     public static create(driverTypeProps: DriverTypeProps, id?: UniqueEntityID): Result<DriverType> {
         const description = driverTypeProps.description;
 
-        if (!!description === false || description.length === 0) {
+        if (!!description === false || description.trim().length === 0) {
             return Result.fail<DriverType>('Must provide a driver type description')
         } else {
             const driverType = new DriverType(driverTypeProps, id);
