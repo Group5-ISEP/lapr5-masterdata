@@ -2,7 +2,7 @@ import { Container } from 'typedi';
 
 import { Mapper } from "../core/infra/Mapper";
 
-import {IUserDTO} from "../dto/IUserDTO";
+import IUserDTO from "../dto/IUserDTO";
 
 import { User } from "../domain/user";
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
@@ -19,7 +19,7 @@ export class UserMap extends Mapper<User> {
       id: user.id.toString(),
       firstName: user.firstName,
       lastName: user.lastName,
-      email: user.email.value,
+      email: user.email,
       password: "",
       role: user.role.id.toString()
     } as IUserDTO;
@@ -34,7 +34,7 @@ export class UserMap extends Mapper<User> {
     const userOrError = User.create({
       firstName: raw.firstName,
       lastName: raw.lastName,
-      email: userEmailOrError.getValue(),
+      email: raw.email,
       password: userPasswordOrError.getValue(),
       role: role,
     }, new UniqueEntityID(raw.base_user_id))
@@ -47,7 +47,7 @@ export class UserMap extends Mapper<User> {
   public static toPersistence (user: User): any {
     const a = {
       base_user_id: user.id.toString(),
-      email: user.email.value,
+      email: user.email,
       password: user.password.value,
       firstName: user.firstName,
       lastName: user.lastName,
