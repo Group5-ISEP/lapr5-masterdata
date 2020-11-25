@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { Inject } from 'typedi';
 import config from "../../config";
 import { Result } from '../core/logic/Result';
-import { Node } from '../domain/node';
 import INodeDTO from '../dto/INodeDTO';
 import INodeService from '../services/IServices/INodeService';
 import INodeController from "./IControllers/INodeController";
