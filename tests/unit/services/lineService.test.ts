@@ -1,11 +1,14 @@
-import { UniqueEntityID } from '../../../src/core/domain/UniqueEntityID';
-import { Line } from '../../../src/domain/line';
+import LineService from '../../../src/services/lineService';
+import MockLineRepo from '../../../src/repos/tests/mockLineRepo';
 
-describe("Line Test", () => {
-    describe("Line creation test", () => {
-        it("should return success when all valid parameters are given", () => {
+describe("Line Service Test", () => {
+    describe("Create Line test", () => {
 
-            const result = Line.create(
+        it("should return success when all valid parameters are given", async () => {
+
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -17,16 +20,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isSuccess).toBeTruthy()
         })
 
-        it("should return failure when empty code is given", () => {
+        it("should return failure when empty code is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "  ",
                     name: "Viso_Aliados",
@@ -38,16 +42,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when null code is given", () => {
+        it("should return failure when null code is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: null,
                     name: "Viso_Aliados",
@@ -59,16 +64,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when null name is given", () => {
+        it("should return failure when null name is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: null,
@@ -80,16 +86,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when empty name is given", () => {
+        it("should return failure when empty name is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "  ",
@@ -101,16 +108,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when null allowed driver types is given", () => {
+        it("should return failure when null allowed driver types is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -122,16 +130,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when null allowed vehicle types is given", () => {
+        it("should return failure when null allowed vehicle types is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -143,16 +152,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when null color is given", () => {
+        it("should return failure when null color is given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -160,16 +170,17 @@ describe("Line Test", () => {
                     allowedVehicleTypes: [],
                     colorRGB: null,
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when negative RGB numbers are given", () => {
+        it("should return failure when negative RGB numbers are given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -181,16 +192,17 @@ describe("Line Test", () => {
                         blue: -1,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when RGB numbers over 255 are given", () => {
+        it("should return failure when RGB numbers over 255 are given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -202,16 +214,17 @@ describe("Line Test", () => {
                         blue: 256,
                     },
                     terminalNodes: ["Aliados", "Viso"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when no 2 end nodes are given", () => {
+        it("should return failure when no 2 end nodes are given", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -223,16 +236,17 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: ["Aliados"]
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
         })
 
-        it("should return failure when terminal nodes list is null", () => {
+        it("should return failure when terminal nodes list is null", async () => {
 
-            const result = Line.create(
+            const service = new LineService(new MockLineRepo())
+
+            const result = await service.createLine(
                 {
                     code: "201",
                     name: "Viso_Aliados",
@@ -244,8 +258,7 @@ describe("Line Test", () => {
                         blue: 10,
                     },
                     terminalNodes: null
-                },
-                new UniqueEntityID(1)
+                }
             )
 
             expect(result.isFailure).toBeTruthy()
