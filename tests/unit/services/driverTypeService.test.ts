@@ -8,24 +8,39 @@ describe("Driver Type Service Test", () => {
     describe("Test create driver type", () => {
         it("should return success if given non empty description", async () => {
 
-            const driverTypeService = new DriverTypeService(new MockDriverTypeRepo())
+            const service = new DriverTypeService(new MockDriverTypeRepo())
 
-            const description = "test description"
-
-            const driverTypeDTO: IDriverTypeDTO = { description: description }
-            const result = await driverTypeService.createDriverType(driverTypeDTO)
+            const result = await service.createDriverType(
+                {
+                    description: "speaks english"
+                }
+            )
 
             expect(result.isSuccess).toBeTruthy()
         })
 
         it("should return failure if given empty description", async () => {
 
-            const driverTypeService = new DriverTypeService(new MockDriverTypeRepo())
+            const service = new DriverTypeService(new MockDriverTypeRepo())
 
-            const description = "  "
+            const result = await service.createDriverType(
+                {
+                    description: "   "
+                }
+            )
 
-            const driverTypeDTO: IDriverTypeDTO = { description: description }
-            const result = await driverTypeService.createDriverType(driverTypeDTO)
+            expect(result.isFailure).toBeTruthy()
+        })
+
+        it("should return failure if given null description", async () => {
+
+            const service = new DriverTypeService(new MockDriverTypeRepo())
+
+            const result = await service.createDriverType(
+                {
+                    description: null
+                }
+            )
 
             expect(result.isFailure).toBeTruthy()
         })
