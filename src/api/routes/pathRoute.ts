@@ -1,10 +1,8 @@
 import { celebrate, Joi } from 'celebrate';
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import Container from 'typedi';
 import config from '../../../config';
 import IPathController from '../../controllers/IControllers/IPathController';
-import middlewares from '../middlewares';
-
 
 const route = Router();
 
