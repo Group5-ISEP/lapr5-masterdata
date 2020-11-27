@@ -65,6 +65,10 @@ export default {
     line: {
       name: "LineController",
       path: "../controllers/lineController"
+      },
+    user: {
+        name: "UserController",
+        path: "../controllers/userController"
     }
   },
 
@@ -96,7 +100,11 @@ export default {
     line: {
       name: "LineRepo",
       path: "../repos/lineRepo"
-    }
+      },
+      user: {
+          name: "UserRepo",
+          path: "../repos/userRepo"
+      }
   },
 
   services: {
@@ -123,6 +131,10 @@ export default {
     line: {
       name: "LineService",
       path: "../services/lineService"
-    }
+      },
+      user: {
+          name: "UserService",
+          path: "../services/userService"
+      }
   },
 };
