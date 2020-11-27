@@ -7,36 +7,31 @@ import IUserDTO from "../dto/IUserDTO";
 import { User } from "../domain/user";
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 
-import { UserEmail } from "../domain/userEmail";
-import { UserPassword } from "../domain/userPassword";
+//import { UserPassword } from "../domain/userPassword";
 
-import RoleRepo from "../repos/roleRepo";
 
 export class UserMap extends Mapper<User> {
 
-  public static toDTO( user: User): IUserDTO {
-    return {
-      id: user.id.toString(),
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      password: "",
-      role: user.role.id.toString()
-    } as IUserDTO;
-  }
+    public static toDTO( user: User): IUserDTO {
+        return {
+            id: user.id.toString(),
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
+            role: user.role
+        } as IUserDTO;
+    }
 
   public static async toDomain (raw: any): Promise<User> {
-    const userEmailOrError = UserEmail.create(raw.email);
-    const userPasswordOrError = UserPassword.create({value: raw.password, hashed: true});
-    const repo = Container.get(RoleRepo);
-    const role = await repo.findByDomainId(raw.role);
+    //const userPasswordOrError = UserPassword.create({value: raw.password, hashed: true});
 
     const userOrError = User.create({
       firstName: raw.firstName,
       lastName: raw.lastName,
       email: raw.email,
-      password: userPasswordOrError.getValue(),
-      role: role,
+      password: raw.password,
+      role: raw.role,
     }, new UniqueEntityID(raw.base_user_id))
 
     userOrError.isFailure ? console.log(userOrError.error) : '';
@@ -48,10 +43,10 @@ export class UserMap extends Mapper<User> {
     const a = {
       base_user_id: user.id.toString(),
       email: user.email,
-      password: user.password.value,
+      password: user.password,
       firstName: user.firstName,
       lastName: user.lastName,
-      role: user.role.id.toValue(),
+      role: user.role,
     }
     return a;
   }
