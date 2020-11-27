@@ -13,12 +13,12 @@ const NodeSchema = new mongoose.Schema(
             required: [true, 'Please enter node name'],
         },
 
-        depot: {
+        isDepot: {
             type: Boolean,
             required: [true, 'Please enter if the node is a depot stop'],
         },
 
-        reliefPoint: {
+        isReliefPoint: {
             type: Boolean,
             required: [true, 'Please enter if the node is a relief point'],
         },
@@ -36,4 +36,4 @@ const NodeSchema = new mongoose.Schema(
     { timestamps: true },
 );
 
-export default mongoose.model<IUserPersistence & mongoose.Document>('NodeSchema', NodeSchema);
+export default mongoose.model<IUserPersistence & mongoose.Document>('Node', NodeSchema);

@@ -18,8 +18,8 @@ export default (app: Router) => {
             body: Joi.object({
                 shortName: Joi.string().required(),
                 name: Joi.string().required(), 
-                depot: Joi.boolean().required(),
-                reliefPoint: Joi.boolean().required(),
+                isDepot: Joi.boolean().required(),
+                isReliefPoint: Joi.boolean().required(),
                 longitude: Joi.number().required(),
                 latitude: Joi.number().required() 
             })

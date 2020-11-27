@@ -1,8 +1,8 @@
 export default interface INodeDTO {
     shortName: string,
     name: string,
-    depot: boolean,
-    reliefPoint: boolean,
+    isDepot: boolean,
+    isReliefPoint: boolean,
     longitude: number,
     latitude: number
 }

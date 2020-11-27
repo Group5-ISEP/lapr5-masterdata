@@ -3,69 +3,70 @@ import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { Guard } from "../core/logic/Guard";
 import { Result } from "../core/logic/Result";
 
-interface NodeProps{
-    shortName: String;
-    name: String;
-    depot: Boolean;
-    reliefPoint: Boolean;
-    longitude: Number;
-    latitude: Number;
+interface NodeProps {
+    shortName: string;
+    name: string;
+    isDepot: boolean;
+    isReliefPoint: boolean;
+    longitude: number;
+    latitude: number;
 }
 
 export class Node extends AggregateRoot<NodeProps>{
-    [x: string]: any;
-    isFailure: any;
-    
-    get shortName (): String {
+
+    get shortName(): string {
         return this.props.shortName;
     }
 
-    get name(): String {
+    get name(): string {
         return this.props.name;
     }
-   
-    get depot(): Boolean {
-        return this.props.depot;
-    }
-   
-    get reliefPoint(): Boolean {
-        return this.props.reliefPoint;
+
+    get isDepot(): boolean {
+        return this.props.isDepot;
     }
 
-    get latitude(): Number {
+    get isReliefPoint(): boolean {
+        return this.props.isReliefPoint;
+    }
+
+    get latitude(): number {
         return this.props.latitude;
     }
 
-    get longitude(): Number {
+    get longitude(): number {
         return this.props.longitude;
     }
 
-    private constructor(props: NodeProps, id?: UniqueEntityID){
+    private constructor(props: NodeProps, id?: UniqueEntityID) {
         super(props, id);
     }
-    
-    public static create(props: NodeProps, id?: UniqueEntityID): Result<Node>{
 
-        const guardedProps = [
-            { argument: props.shortName, argumentName: 'shortName'},
-            { argument: props.name, argumentName: 'name'},
-            { argument: props.depot, argumentName: 'depot'},
-            { argument: props.reliefPoint, argumentName: 'reliefPoint'},
-            { argument: props.longitude, argumentName: 'longitude'},
-            { argument: props.latitude, argumentName: 'latitude'}
-        ];
+    public static create(props: NodeProps, id?: UniqueEntityID): Result<Node> {
 
-        const guardResult = Guard.againstNullOrUndefinedBulk(guardedProps);
+        const { name, shortName, latitude, longitude } = props
 
-        if (!guardResult.succeeded) {
-            return Result.fail<Node>(guardResult.message)
+
+        if (!name || name.trim().length <= 0) {
+            return Result.fail<Node>("Node name must be specified")
+        }
+        else if (!shortName || shortName.trim().length <= 0) {
+            return Result.fail<Node>("Node shortname must be specified")
+        }
+        else if (!latitude || latitude < -180 || latitude > 180) {
+            return Result.fail<Node>("Must be specified latitude between -180 and 180")
+        }
+        else if (!longitude || longitude < -90 || longitude > 90) {
+            return Result.fail<Node>("Must be specified longitude between -90 and 90")
         }
         else {
             const node = new Node({
                 ...props
-            });
+            },
+                id
+            );
 
             return Result.ok<Node>(node);
         }
-    }    
+    }
 }

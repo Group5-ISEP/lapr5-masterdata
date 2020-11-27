@@ -1,9 +1,9 @@
 
 export interface INodePersistence {
-    shortName: String;
-    name: String;
-    depot: Boolean;
-    reliefPoint: Boolean;
-    longitude: Number;
-    latitude: Number;
+    shortName: string;
+    name: string;
+    isDepot: boolean;
+    isReliefPoint: boolean;
+    longitude: number;
+    latitude: number;
 }

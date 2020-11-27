@@ -14,8 +14,8 @@ export class NodeMap extends Mapper<Node>{
         return {
             shortName: node.shortName,
             name: node.name,
-            depot: node.depot,
-            reliefPoint: node.reliefPoint,
+            isDepot: node.isDepot,
+            isReliefPoint: node.isReliefPoint,
             longitude: node.longitude,
             latitude: node.latitude,
         } as INodeDTO
@@ -25,8 +25,8 @@ export class NodeMap extends Mapper<Node>{
         const nodeOrError = Node.create({
             shortName: raw.shortName,
             name: raw.name,
-            depot: raw.depot,
-            reliefPoint: raw.reliefPoint,
+            isDepot: raw.isDepot,
+            isReliefPoint: raw.isReliefPoint,
             longitude: raw.longitude,
             latitude: raw.latitude,
         }, new UniqueEntityID(raw._id))
@@ -41,8 +41,8 @@ export class NodeMap extends Mapper<Node>{
         return {
             shortName: node.shortName,
             name: node.name,
-            depot: node.depot,
-            reliefPoint: node.reliefPoint,
+            isDepot: node.isDepot,
+            isReliefPoint: node.isReliefPoint,
             longitude: node.longitude,
             latitude: node.latitude,
         } as INodePersistence
