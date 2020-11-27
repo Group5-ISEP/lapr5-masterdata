@@ -33,8 +33,8 @@ export default class NodeRepo implements INodeRepo {
             } else {
                 nodeDocument.shortName = node.shortName;
                 nodeDocument.name = node.name;
-                nodeDocument.depot = node.depot;
-                nodeDocument.reliefPoint = node.reliefPoint;
+                nodeDocument.isDepot = node.isDepot;
+                nodeDocument.isReliefPoint = node.isReliefPoint;
                 nodeDocument.longitude = node.longitude;
                 nodeDocument.latitude = node.latitude;
 
@@ -51,31 +51,32 @@ export default class NodeRepo implements INodeRepo {
     public async listNodes(filter: string): Promise<Node[]> {
         //TO DO order by
         //order by: add variavel order atraves de tudo; req.body.order;
-                    //repo: ordenar lista nodes antes de retornar
+        //repo: ordenar lista nodes antes de retornar
 
-       
-    try {
-        const allNodes = this.nodeSchema.find({});  //find all  
-         if (allNodes != null) {
-            var nodes = [];
-            (await allNodes).forEach(async function (node) {
-                const p = await NodeMap.toDomain(node);
-                if(p.name.startsWith(filter) || p.id.toString().startsWith(filter)){
-                   
-                    nodes.push(p);
-                }
-                
-            });
-        
+
+        try {
+            const allNodes = this.nodeSchema.find({});  //find all  
+            if (allNodes != null) {
+                var nodes = [];
+                (await allNodes).forEach(async function (node) {
+                    const p = await NodeMap.toDomain(node);
+                    if (p.name.startsWith(filter) || p.id.toString().startsWith(filter)) {
+
+                        nodes.push(p);
+                    }
+
+                });
+
+            }
+
+            //se nodes.length > 0 
+            // ordenar         
+            return nodes;
+
+        } catch (err) {
+            throw err;
+
         }
 
-    //se nodes.length > 0 
-    // ordenar         
-    return nodes;   
-
-    } catch (err) {
-        throw err;
-
     }
-
-}}
+}
