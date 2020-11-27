@@ -13,7 +13,18 @@ export default async ({ expressApp }) => {
     // compare with the approach followed in repos and services
     name: 'userSchema',
     schema: '../persistence/schemas/userSchema',
-  };
+    };
+
+    const userController = {
+        name: config.controller.user.name,
+        path: config.controller.user.path
+    }
+
+    const userService = {
+        name: config.services.user.name,
+        path: config.services.user.path
+    }
+
 
   const roleSchema = {
     // compare with the approach followed in repos and services
@@ -139,38 +150,40 @@ export default async ({ expressApp }) => {
   await dependencyInjectorLoader({
     mongoConnection,
     schemas: [
-      userSchema,
-      roleSchema,
-      driverTypeSchema,
-      vehicleTypeSchema,
-      nodeSchema,
-      pathSchema,
-      lineSchema
+        userSchema,
+        roleSchema,
+        driverTypeSchema,
+        vehicleTypeSchema,
+        nodeSchema,
+        pathSchema,
+        lineSchema
     ],
     controllers: [
-      roleController,
-      driverTypeController,
-      vehicleTypeController,
-      nodeController,
-      pathController,
-      lineController
+        userController,
+        roleController,
+        driverTypeController,
+        vehicleTypeController,
+        nodeController,
+        pathController,
+        lineController
     ],
     repos: [
-      roleRepo,
-      userRepo,
-      driverTypeRepo,
-      vehicleTypeRepo,
-      nodeRepo,
-      pathRepo,
-      lineRepo
+        roleRepo,
+        userRepo,
+        driverTypeRepo,
+        vehicleTypeRepo,
+        nodeRepo,
+        pathRepo,
+        lineRepo
     ],
     services: [
-      roleService,
-      driverTypeService,
-      vehicleTypeService,
-      pathService,
-      nodeService,
-      lineService
+        userService,
+        roleService,
+        driverTypeService,
+        vehicleTypeService,
+        pathService,
+        nodeService,
+        lineService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');
