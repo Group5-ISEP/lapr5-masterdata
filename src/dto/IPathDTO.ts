@@ -1,10 +1,10 @@
-import { Segment } from "../domain/segment";
+import ISegmentDTO from "./ISegmentDTO";
 
 export default interface IPathDTO {
-    id: string;
     lineCode: string;
     direction: string;
-    segmentList: [Segment];
+    segmentList: ISegmentDTO[];
     firstNode: string;
     lastNode: string;
+    isEmpty: boolean
 }
