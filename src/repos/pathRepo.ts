@@ -12,10 +12,10 @@ export default class PathRepo implements IPathRepo {
     private models: any;
 
     constructor(
-        @Inject('pathSchema') private pathSchema : Model<IPathPersistence & Document>,
-    ) {}
+        @Inject('pathSchema') private pathSchema: Model<IPathPersistence & Document>,
+    ) { }
 
-    private createBaseQuery (): any {
+    private createBaseQuery(): any {
         return {
             where: {},
         }
@@ -31,16 +31,16 @@ export default class PathRepo implements IPathRepo {
         */
         return false;//!!pathDocument === true;
     }
-    
+
 
     public async save(path: Path): Promise<Path> {
 
-        const query = { id: path.id }; 
+        const query = { lineCode: path.lineCode, direction: path.direction, isEmpty: path.isEmpty };
 
-        const pathDocument = await this.pathSchema.findOne( query );
+        const pathDocument = await this.pathSchema.findOne(query);
 
         try {
-            if (pathDocument === null ) {
+            if (pathDocument === null) {
                 const rawPath: any = PathMap.toPersistence(path);
 
                 const pathCreated = await this.pathSchema.create(rawPath);
@@ -58,7 +58,7 @@ export default class PathRepo implements IPathRepo {
         } catch (err) {
             throw err;
         }
-      }
+    }
 
     public async findByLine(line: string): Promise<Path[]> {
 

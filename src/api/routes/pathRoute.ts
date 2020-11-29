@@ -18,7 +18,8 @@ export default (app: Router) => {
                 direction: Joi.string().required(),
                 segmentList: Joi.array().required(), //SegmentList
                 firstNode: Joi.string().required(),
-                lastNode: Joi.string().required()
+                lastNode: Joi.string().required(),
+                isEmpty: Joi.boolean().required()
             })
         }),
         (req, res, next) => ctrl.createPath(req, res, next));
@@ -38,5 +39,5 @@ export default (app: Router) => {
  * post     /api/line
  * get      /api/lines
  * get      /api/paths/{LineCode}
- * 
+ *
  */

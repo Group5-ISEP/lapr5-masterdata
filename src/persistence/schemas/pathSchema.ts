@@ -7,11 +7,13 @@ const PathSchema = new mongoose.Schema(
         lineCode: {
             type: String,
             required: [true, 'Please enter the line of the path'],
+            index: true
         },
 
         direction: {
             type: String,
-            required: [true, 'Please enter the paths direction']
+            required: [true, 'Please enter the paths direction'],
+            index: true
         },
 
         segmentList: {
@@ -34,6 +36,12 @@ const PathSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+
+        isEmpty: {
+            type: Boolean,
+            required: true,
+            index: true
+        }
 
     },
     { timestamps: true },
