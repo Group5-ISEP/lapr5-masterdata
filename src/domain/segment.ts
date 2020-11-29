@@ -1,4 +1,11 @@
 
+interface SegmentProps {
+    startNode: string;
+    endNode: string;
+    duration: number;
+    distance: number;
+    order: number;
+}
 export class Segment {
     startNode: string;
     endNode: string;
@@ -26,11 +33,11 @@ export class Segment {
         return this.order;
     }
 
-    public constructor(sNode: string, eNode: string, dur: number, dis: number, order: number) {
-        this.startNode = sNode;
-        this.endNode = eNode;
-        this.duration = dur;
-        this.distance = dis;
-        this.order = order;
+    public constructor(props: SegmentProps) {
+        this.startNode = props.startNode;
+        this.endNode = props.endNode;
+        this.duration = props.duration;
+        this.distance = props.distance;
+        this.order = props.order;
     }
 }
