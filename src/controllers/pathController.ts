@@ -18,7 +18,7 @@ export default class PathController implements IPathController {
             const pathOrError = await this.pathServiceInstance.createPath(req.body as IPathDTO) as Result<IPathDTO>;
 
             if (pathOrError.isFailure) {
-                return res.status(402).send();
+                return res.status(402).send(pathOrError.errorValue());
             }
 
             const pathDTO = pathOrError.getValue();
