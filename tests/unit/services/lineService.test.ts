@@ -1,5 +1,7 @@
 import LineService from '../../../src/services/lineService';
 import MockLineRepo from '../../../src/repos/tests/mockLineRepo';
+import ILineDTO from '../../../src/dto/ILineDTO';
+import { LineMap } from '../../../src/mappers/LineMap';
 
 describe("Line Service Test", () => {
     describe("Create Line test", () => {
@@ -262,6 +264,39 @@ describe("Line Service Test", () => {
             )
 
             expect(result.isFailure).toBeTruthy()
+        })
+    })
+
+    describe("Get lines test", () => {
+
+
+        const line1: ILineDTO = {
+            code: "201",
+            name: "Viso_Aliados",
+            allowedDriverTypes: [],
+            allowedVehicleTypes: [],
+            colorRGB: {
+                red: 10,
+                green: 10,
+                blue: 10,
+            },
+            terminalNodes: ["Aliados", "Viso"]
+        }
+
+        const mockRepo = new MockLineRepo()
+
+        beforeAll(() => {
+            mockRepo.mockLines.push(LineMap.toDomain(line1))
+        })
+
+        it("should return list with expected lines", async () => {
+
+            const service = new LineService(mockRepo)
+
+            const result = (await service.listLines()).getValue()
+
+            expect(result.length).toBe(1)
+            expect(result.find(line => line.code === line1.code)).toBeTruthy()
         })
     })
 })
