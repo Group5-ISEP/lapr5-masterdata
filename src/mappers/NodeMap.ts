@@ -21,7 +21,7 @@ export class NodeMap extends Mapper<Node>{
         } as INodeDTO
     }
 
-    public static async toDomain(raw: any): Promise<Node> {
+    public static toDomain(raw: any): Node {
         const nodeOrError = Node.create({
             shortName: raw.shortName,
             name: raw.name,
