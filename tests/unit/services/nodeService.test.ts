@@ -1,5 +1,8 @@
 import NodeService from '../../../src/services/nodeService';
 import MockNodeRepo from '../../../src/repos/tests/mockNodeRepo';
+import INodeDTO from '../../../src/dto/INodeDTO';
+import { NodeMap } from '../../../src/mappers/NodeMap';
+import _ from 'lodash';
 
 describe("Node Service Test", () => {
     describe("Create node test", () => {
@@ -202,5 +205,47 @@ describe("Node Service Test", () => {
         })
 
 
+    })
+
+    describe("Get nodes list test", () => {
+        const node1: INodeDTO = {
+            name: "Fonte da Moura",
+            shortName: "FTM",
+            isDepot: false,
+            isReliefPoint: false,
+            latitude: 41.163665,
+            longitude: -8.662789
+        }
+        const node2: INodeDTO = {
+            name: "Boavista",
+            shortName: "BOAV",
+            isDepot: false,
+            isReliefPoint: false,
+            latitude: 41.157720,
+            longitude: -8.629293
+        }
+
+
+        const mockRepo = new MockNodeRepo()
+
+
+        beforeAll(() => {
+            let list = [
+                NodeMap.toDomain(node1),
+                NodeMap.toDomain(node2)
+            ]
+            mockRepo.list.push(...list)
+        })
+
+        it("should return a list with the expected elements", async () => {
+
+            const service = new NodeService(mockRepo)
+
+            const result = (await service.listNodes()).getValue()
+
+            expect(result.find(node => node.shortName === node1.shortName)).toBeTruthy()
+            expect(result.find(node => node.shortName === node2.shortName)).toBeTruthy()
+            expect(result.length).toBe(2)
+        })
     })
 })
