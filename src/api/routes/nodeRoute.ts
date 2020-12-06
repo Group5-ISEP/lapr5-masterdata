@@ -17,11 +17,11 @@ export default (app: Router) => {
         celebrate({
             body: Joi.object({
                 shortName: Joi.string().required(),
-                name: Joi.string().required(), 
+                name: Joi.string().required(),
                 isDepot: Joi.boolean().required(),
                 isReliefPoint: Joi.boolean().required(),
                 longitude: Joi.number().required(),
-                latitude: Joi.number().required() 
+                latitude: Joi.number().required()
             })
         }),
         (req, res, next) => {
@@ -30,10 +30,5 @@ export default (app: Router) => {
     )
 
     route.get('',
-        celebrate({
-            body: Joi.object({
-                lineCode: Joi.string().required()
-            })
-        }),
         (req, res, next) => ctrl.listNodes(req, res, next));
 }
