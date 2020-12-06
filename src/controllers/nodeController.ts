@@ -30,10 +30,10 @@ export default class NodeController implements INodeController {
     public async listNodes(req: Request, res: Response, next: NextFunction) {
 
         try {
-            const nodesOrError = await this.nodeServiceInstance.listNodes(req.body.filter) as Result<INodeDTO[]>;
+            const nodesOrError = await this.nodeServiceInstance.listNodes();
 
             if (nodesOrError.isFailure) {
-                return res.status(400).send();
+                return res.status(500).send(nodesOrError.errorValue());
             }
 
             const nodesDTO = nodesOrError.getValue();
