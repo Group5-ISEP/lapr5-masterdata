@@ -38,7 +38,7 @@ export default class PathController implements IPathController {
             }
 
             const pathsDTO = pathsOrError.getValue();
-            return res.status(201).json(pathsDTO);
+            return res.status(200).json(pathsDTO);
         }
         catch (e) {
             return next(e);

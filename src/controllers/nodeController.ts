@@ -37,7 +37,7 @@ export default class NodeController implements INodeController {
             }
 
             const nodesDTO = nodesOrError.getValue();
-            return res.status(201).json(nodesDTO);
+            return res.status(200).json(nodesDTO);
         }
         catch (e) {
             return next(e);
