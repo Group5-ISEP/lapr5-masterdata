@@ -35,27 +35,13 @@ export default class NodeService implements INodeService {
         }
     }
 
-    public async listNodes(filter: string): Promise<Result<INodeDTO[]>> {
+    public async listNodes(): Promise<Result<INodeDTO[]>> {
         try {
-
-            const nodes = await this.nodeRepoInstance.listNodes(filter);
-
-            var nodesDTO = [];
-            for (var i = 0; i < nodes.length; i++) {
-                const DTO = NodeMap.toDTO(nodes[i]) as INodeDTO;
-                nodesDTO.push(DTO);
-            }
-
-            if (nodes.length > 0) {
-                console.log("Found " + nodes.length + " nodes starting by " + filter);
-                return Result.ok<INodeDTO[]>(nodesDTO);
-            }
-            else {
-                console.log("Found " + 0 + " nodes");
-                return Result.fail<INodeDTO[]>("No nodes starting " + filter + " found");
-            }
+            const nodes = await this.nodeRepoInstance.getNodes();
+            const nodeDtoList = nodes.map(node => NodeMap.toDTO(node))
+            return Result.ok(nodeDtoList)
         } catch (e) {
-            throw e;
+            return Result.fail(e)
         }
     }
 }
