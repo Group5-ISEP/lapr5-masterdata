@@ -11,6 +11,15 @@ export default class LineRepo implements ILineRepo {
         @Inject('lineSchema') private lineSchema: Model<ILinePersistence & Document>,
     ) { }
 
+    public async getLines(): Promise<Line[]> {
+
+        const lineDocumenList = await this.lineSchema.find()
+
+        const lineList = lineDocumenList.map(lineDocument => LineMap.toDomain(lineDocument))
+
+        return lineList
+    }
+
     exists(t: Line): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
