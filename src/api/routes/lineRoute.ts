@@ -30,4 +30,7 @@ export default (app: Router) => {
             ctrl.createLine(req, res, next)
         }
     );
+
+    route.get('',
+        (req, res, next) => ctrl.listLines(req, res, next))
 };
