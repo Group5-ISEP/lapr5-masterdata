@@ -1,5 +1,7 @@
 import PathService from '../../../src/services/pathService';
 import MockPathRepo from '../../../src/repos/tests/mockPathRepo';
+import IPathDTO from '../../../src/dto/IPathDTO';
+import { PathMap } from '../../../src/mappers/PathMap';
 
 
 describe("Path Service Test", () => {
@@ -11,11 +13,11 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Boavista", distance: 2000, duration: 20, order: 1 },
-                        { startNode: "Boavista", endNode: "Aliados", distance: 1500, duration: 15, order: 2 }
+                        { startNode: "VIS", endNode: "BOAV", distance: 2000, duration: 20, order: 1 },
+                        { startNode: "BOAV", endNode: "ALIAD", distance: 1500, duration: 15, order: 2 }
                     ],
                     isEmpty: false
                 }
@@ -31,11 +33,11 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "From",
-                    firstNode: "Aliados",
-                    lastNode: "Viso",
+                    firstNode: "ALIAD",
+                    lastNode: "VIS",
                     segmentList: [
-                        { startNode: "Boavista", endNode: "Viso", distance: 2000, duration: 20, order: 2 },
-                        { startNode: "Aliados", endNode: "Boavista", distance: 1500, duration: 15, order: 1 }
+                        { startNode: "BOAV", endNode: "VIS", distance: 2000, duration: 20, order: 2 },
+                        { startNode: "ALIAD", endNode: "BOAV", distance: 1500, duration: 15, order: 1 }
                     ],
                     isEmpty: false
                 }
@@ -51,10 +53,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -70,10 +72,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "From",
-                    firstNode: "Aliados",
-                    lastNode: "Viso",
+                    firstNode: "ALIAD",
+                    lastNode: "VIS",
                     segmentList: [
-                        { startNode: "Aliados", endNode: "Viso", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "ALIAD", endNode: "VIS", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -89,10 +91,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "  ",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -108,10 +110,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: null,
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -127,10 +129,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "whatever",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -146,10 +148,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "  ",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -165,10 +167,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: null,
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -185,9 +187,9 @@ describe("Path Service Test", () => {
                     lineCode: "201",
                     direction: "To",
                     firstNode: "  ",
-                    lastNode: "Aliados",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -204,9 +206,9 @@ describe("Path Service Test", () => {
                     lineCode: "201",
                     direction: "To",
                     firstNode: null,
-                    lastNode: "Aliados",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -222,10 +224,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
+                    firstNode: "VIS",
                     lastNode: "  ",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -241,10 +243,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
+                    firstNode: "VIS",
                     lastNode: null,
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -260,8 +262,8 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
                     ],
                     isEmpty: true
@@ -278,10 +280,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "  ", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "  ", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -297,10 +299,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: null, endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: null, endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -316,10 +318,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "  ", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "  ", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -335,10 +337,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: null, distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: null, distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -354,10 +356,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: -1, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: -1, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -373,10 +375,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: -1, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: -1, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -392,10 +394,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: 0 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: 0 },
                     ],
                     isEmpty: true
                 }
@@ -411,10 +413,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: null, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: null, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -430,10 +432,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: null, order: 1 },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: null, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -449,10 +451,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Aliados", distance: 3000, duration: 20, order: null },
+                        { startNode: "VIS", endNode: "ALIAD", distance: 3000, duration: 20, order: null },
                     ],
                     isEmpty: true
                 }
@@ -468,10 +470,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Boavista", endNode: "Aliados", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "BOAV", endNode: "ALIAD", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -487,10 +489,10 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Boavista", distance: 3000, duration: 20, order: 1 },
+                        { startNode: "VIS", endNode: "BOAV", distance: 3000, duration: 20, order: 1 },
                     ],
                     isEmpty: true
                 }
@@ -506,12 +508,12 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Fonte da Moura", distance: 2000, duration: 20, order: 1 },
-                        { startNode: "Fonte da Moura ", endNode: "Boavista", distance: 1500, duration: 15, order: 1 },
-                        { startNode: "Boavista ", endNode: "Aliados", distance: 1000, duration: 10, order: 3 }
+                        { startNode: "VIS", endNode: "Fonte da Moura", distance: 2000, duration: 20, order: 1 },
+                        { startNode: "Fonte da Moura ", endNode: "BOAV", distance: 1500, duration: 15, order: 1 },
+                        { startNode: "BOAV ", endNode: "ALIAD", distance: 1000, duration: 10, order: 3 }
                     ],
                     isEmpty: false
                 }
@@ -527,12 +529,12 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Fonte da Moura", distance: 2000, duration: 20, order: 1 },
-                        { startNode: "Fonte da Moura ", endNode: "Boavista", distance: 1500, duration: 15, order: 3 },
-                        { startNode: "Boavista ", endNode: "Aliados", distance: 1000, duration: 10, order: 4 }
+                        { startNode: "VIS", endNode: "Fonte da Moura", distance: 2000, duration: 20, order: 1 },
+                        { startNode: "Fonte da Moura ", endNode: "BOAV", distance: 1500, duration: 15, order: 3 },
+                        { startNode: "BOAV ", endNode: "ALIAD", distance: 1000, duration: 10, order: 4 }
                     ],
                     isEmpty: false
                 }
@@ -548,12 +550,12 @@ describe("Path Service Test", () => {
                 {
                     lineCode: "201",
                     direction: "To",
-                    firstNode: "Viso",
-                    lastNode: "Aliados",
+                    firstNode: "VIS",
+                    lastNode: "ALIAD",
                     segmentList: [
-                        { startNode: "Viso", endNode: "Fonte da Moura", distance: 2000, duration: 20, order: 1 },
-                        { startNode: "Random", endNode: "Boavista", distance: 1500, duration: 15, order: 2 },
-                        { startNode: "Boavista ", endNode: "Aliados", distance: 1000, duration: 10, order: 3 }
+                        { startNode: "VIS", endNode: "Fonte da Moura", distance: 2000, duration: 20, order: 1 },
+                        { startNode: "Random", endNode: "BOAV", distance: 1500, duration: 15, order: 2 },
+                        { startNode: "BOAV ", endNode: "ALIAD", distance: 1000, duration: 10, order: 3 }
                     ],
                     isEmpty: false
                 }
@@ -562,6 +564,56 @@ describe("Path Service Test", () => {
             expect(result.isFailure).toBeTruthy()
         })
 
+
+    })
+
+    describe("Get paths by line test", () => {
+
+        const path1: IPathDTO = {
+            lineCode: "201",
+            direction: "To",
+            firstNode: "VIS",
+            lastNode: "ALIAD",
+            segmentList: [
+                { startNode: "VIS", endNode: "BOAV", distance: 2000, duration: 20, order: 1 },
+                { startNode: "BOAV", endNode: "ALIAD", distance: 1500, duration: 15, order: 2 }
+            ],
+            isEmpty: false
+        }
+
+        const path2: IPathDTO = {
+            lineCode: "201",
+            direction: "From",
+            firstNode: "ALIAD",
+            lastNode: "VIS",
+            segmentList: [
+                { startNode: "BOAV", endNode: "VIS", distance: 2000, duration: 20, order: 2 },
+                { startNode: "ALIAD", endNode: "BOAV", distance: 1500, duration: 15, order: 1 }
+            ],
+            isEmpty: false
+        }
+
+        const mockRepo = new MockPathRepo()
+
+        beforeAll(async () => {
+            let pathlist = [
+                await PathMap.toDomain(path1),
+                await PathMap.toDomain(path2)
+            ]
+            mockRepo.pathList.push(...pathlist)
+        })
+
+        it("should return a list with the expected paths", async () => {
+
+            const service = new PathService(mockRepo)
+
+            const result = (await service.getPathsOfLine("201")).getValue()
+
+            expect(result.length).toBe(2)
+
+            expect(result.find(path => path.lineCode === path1.lineCode && path.direction === path1.direction)).toBeTruthy()
+            expect(result.find(path => path.lineCode === path2.lineCode && path.direction === path2.direction)).toBeTruthy()
+        })
 
     })
 })
