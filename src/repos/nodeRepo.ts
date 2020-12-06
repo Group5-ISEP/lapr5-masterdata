@@ -48,34 +48,14 @@ export default class NodeRepo implements INodeRepo {
         }
     }
 
-    public async listNodes(filter: string): Promise<Node[]> {
-        //TO DO order by
-        //order by: add variavel order atraves de tudo; req.body.order;
-        //repo: ordenar lista nodes antes de retornar
-
+    public async getNodes(): Promise<Node[]> {
 
         try {
-            const allNodes = this.nodeSchema.find({});  //find all  
-            if (allNodes != null) {
-                var nodes = [];
-                (await allNodes).forEach(async function (node) {
-                    const p = await NodeMap.toDomain(node);
-                    if (p.name.startsWith(filter) || p.id.toString().startsWith(filter)) {
-
-                        nodes.push(p);
-                    }
-
-                });
-
-            }
-
-            //se nodes.length > 0 
-            // ordenar         
-            return nodes;
-
+            const nodeDocumentList = await this.nodeSchema.find();  //find all  
+            const nodeList = nodeDocumentList.map(nodeDocument => NodeMap.toDomain(nodeDocument))
+            return nodeList;
         } catch (err) {
             throw err;
-
         }
 
     }
