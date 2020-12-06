@@ -13,6 +13,16 @@ export default class LineService implements ILineService {
         @Inject(config.repos.line.name) private lineRepo: ILineRepo
     ) { }
 
+
+    public async listLines(): Promise<Result<ILineDTO[]>> {
+
+        const lineList = await this.lineRepo.getLines()
+
+        let lineDtoList = lineList.map(line => LineMap.toDTO(line))
+
+        return Result.ok(lineDtoList)
+    }
+
     public async createLine(lineDTO: ILineDTO): Promise<Result<ILineDTO>> {
         try {
 
