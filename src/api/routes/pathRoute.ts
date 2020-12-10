@@ -24,7 +24,7 @@ export default (app: Router) => {
         }),
         (req, res, next) => ctrl.createPath(req, res, next));
 
-    route.get('',
+    route.get('/:lineCode',
         celebrate({
             body: Joi.object({
                 lineCode: Joi.string().required()

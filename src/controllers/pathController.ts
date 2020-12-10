@@ -10,8 +10,8 @@ import { Result } from "../core/logic/Result";
 
 export default class PathController implements IPathController {
     constructor(
-        @Inject(config.services.path.name) private pathServiceInstance : IPathService
-    ) {}
+        @Inject(config.services.path.name) private pathServiceInstance: IPathService
+    ) { }
 
     public async createPath(req: Request, res: Response, next: NextFunction) {
         try {
@@ -22,7 +22,7 @@ export default class PathController implements IPathController {
             }
 
             const pathDTO = pathOrError.getValue();
-            return res.status(201).json( pathDTO );
+            return res.status(201).json(pathDTO);
         }
         catch (e) {
             return next(e);
@@ -31,7 +31,7 @@ export default class PathController implements IPathController {
 
     public async getPathsOfLine(req: Request, res: Response, next: NextFunction) {
         try {
-            const pathsOrError = await this.pathServiceInstance.getPathsOfLine(req.body.lineCode) as Result<IPathDTO[]>;
+            const pathsOrError = await this.pathServiceInstance.getPathsOfLine(req.params.lineCode) as Result<IPathDTO[]>;
 
             if (pathsOrError.isFailure) {
                 return res.status(400).send();
