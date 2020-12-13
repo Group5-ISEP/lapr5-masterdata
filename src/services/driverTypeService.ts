@@ -33,4 +33,16 @@ export default class DriverTypeService implements IDriverTypeService {
         }
     }
 
+    public async listDriverTypes(): Promise<Result<IDriverTypeDTO[]>> {
+        try {
+            const driverTypes = await this.driverTypeRepo.getAll()
+
+            const dtoList = driverTypes.map(driverType => DriverTypeMap.toDTO(driverType))
+
+            return Result.ok<IDriverTypeDTO[]>(dtoList)
+        } catch (error) {
+            Result.fail<IDriverTypeDTO[]>(error)
+        }
+    }
+
 }
