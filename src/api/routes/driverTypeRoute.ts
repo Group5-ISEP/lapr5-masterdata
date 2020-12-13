@@ -24,4 +24,10 @@ export default (app: Router) => {
             ctrl.createDriverType(req, res, next)
         }
     );
+
+    route.get('',
+        (req, res, next) => {
+            ctrl.listDriverTypes(req, res, next)
+        }
+    )
 };
