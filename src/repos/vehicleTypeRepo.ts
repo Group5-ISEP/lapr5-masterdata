@@ -12,6 +12,14 @@ export default class VehicleTypeRepo implements IVehicleTypeRepo {
         @Inject('vehicleTypeSchema') private vehicleTypeSchema: Model<IVehicleTypePersistence & Document>,
     ) { }
 
+    public async getAll(): Promise<VehicleType[]> {
+        const result = await this.vehicleTypeSchema.find()
+
+        const vehicleTypeList = result.map(doc => VehicleTypeMap.toDomain(doc))
+
+        return vehicleTypeList
+    }
+
     exists(t: VehicleType): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
