@@ -11,6 +11,15 @@ export default class DriverTypeRepo implements IDriverTypeRepo {
         @Inject('driverTypeSchema') private driverTypeSchema: Model<IDriverTypePersistence & Document>,
     ) { }
 
+
+    public async getAll(): Promise<DriverType[]> {
+        const result = await this.driverTypeSchema.find()
+
+        const driverTypeList = result.map(doc => DriverTypeMap.toDomain(doc))
+
+        return driverTypeList
+    }
+
     exists(t: DriverType): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
