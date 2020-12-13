@@ -1,5 +1,7 @@
 import VehicleTypeService from '../../../src/services/vehicleTypeService';
 import MockVehicleTypeRepo from '../../../src/repos/tests/mockVehicleTypeRepo';
+import IVehicleTypeDTO from '../../../src/dto/IVehicleTypeDTO';
+import { VehicleTypeMap } from '../../../src/mappers/VehicleTypeMap';
 
 
 describe("Vehicle Type Service Test", () => {
@@ -173,6 +175,32 @@ describe("Vehicle Type Service Test", () => {
             )
 
             expect(result.isFailure).toBeTruthy()
+        })
+    })
+
+    describe("Get vehicle types", () => {
+
+        const vt1: IVehicleTypeDTO = {
+            name: "autocarro a gasoleo",
+            autonomy: 10,
+            averageConsumption: 10,
+            averageSpeed: 10,
+            costByKm: 10,
+            emissions: 10,
+            energySource: "Gas"
+        }
+
+        const repo = new MockVehicleTypeRepo()
+        repo.mockList.push(VehicleTypeMap.toDomain(vt1))
+
+
+        it("should return a list with the expected elements", async () => {
+            const service = new VehicleTypeService(repo)
+
+            const result = (await service.listVehicleTypes()).getValue()
+
+            expect(result.length).toBe(1)
+            expect(result.find(vt => vt.name === vt1.name)).toBeTruthy()
         })
     })
 })
