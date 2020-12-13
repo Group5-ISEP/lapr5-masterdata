@@ -28,4 +28,10 @@ export default (app: Router) => {
         }
     );
 
+    route.get('',
+        (req, res, next) => {
+            ctrl.listVehicleTypes(req, res, next)
+        }
+    )
+
 }
