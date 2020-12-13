@@ -13,6 +13,19 @@ export default class VehicleTypeService implements IVehicleTypeService {
         @Inject(config.repos.vehicleType.name) private vehicleTypeRepo: IVehicleTypeRepo
     ) { }
 
+    public async listVehicleTypes(): Promise<Result<IVehicleTypeDTO[]>> {
+        try {
+            const list = await this.vehicleTypeRepo.getAll()
+
+            const dtoList = list.map(vehicleType => VehicleTypeMap.toDTO(vehicleType))
+
+            return Result.ok<IVehicleTypeDTO[]>(dtoList)
+        } catch (error) {
+            return Result.fail<IVehicleTypeDTO[]>(error)
+        }
+
+    }
+
     public async createVehicleType(vehicleTypeDTO: IVehicleTypeDTO): Promise<Result<IVehicleTypeDTO>> {
         try {
 
