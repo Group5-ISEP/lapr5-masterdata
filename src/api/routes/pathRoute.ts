@@ -25,19 +25,6 @@ export default (app: Router) => {
         (req, res, next) => ctrl.createPath(req, res, next));
 
     route.get('/:lineCode',
-        celebrate({
-            body: Joi.object({
-                lineCode: Joi.string().required()
-            })
-        }),
         (req, res, next) => ctrl.getPathsOfLine(req, res, next));
 
-    //To get the lines paths of a line, use lineRoute (that calls pathController)
 }
-/*
- * post     /api/node
- * post     /api/line
- * get      /api/lines
- * get      /api/paths/{LineCode}
- *
- */

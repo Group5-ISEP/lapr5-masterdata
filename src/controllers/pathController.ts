@@ -31,6 +31,7 @@ export default class PathController implements IPathController {
 
     public async getPathsOfLine(req: Request, res: Response, next: NextFunction) {
         try {
+
             const pathsOrError = await this.pathServiceInstance.getPathsOfLine(req.params.lineCode) as Result<IPathDTO[]>;
 
             if (pathsOrError.isFailure) {
@@ -38,6 +39,7 @@ export default class PathController implements IPathController {
             }
 
             const pathsDTO = pathsOrError.getValue();
+
             return res.status(200).json(pathsDTO);
         }
         catch (e) {

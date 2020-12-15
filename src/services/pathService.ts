@@ -36,11 +36,12 @@ export default class PathService implements IPathService {
     public async getPathsOfLine(lineCode: string): Promise<Result<IPathDTO[]>> {
         try {
             const paths = await this.pathRepo.findByLine(lineCode);
-            console.log("Found " + paths.length + " paths in line " + lineCode);
+//            console.log("Found " + paths.length + " paths in line " + lineCode);
             var pathsDTO = [];
             for (var i = 0; i < paths.length; i++) {
                 const DTO = PathMap.toDTO(paths[i]) as IPathDTO;
                 pathsDTO.push(DTO);
+                console.log(paths[i]);
             }
             if (paths.length > 0) {
                 return Result.ok<IPathDTO[]>(pathsDTO);
