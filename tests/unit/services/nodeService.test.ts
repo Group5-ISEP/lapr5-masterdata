@@ -12,6 +12,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -30,6 +31,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "  ",
                     shortName: "PRDS",
                     isDepot: false,
@@ -48,6 +50,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: null,
                     shortName: "PRDS",
                     isDepot: false,
@@ -66,6 +69,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "  ",
                     isDepot: false,
@@ -84,6 +88,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: null,
                     isDepot: false,
@@ -102,6 +107,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -120,6 +126,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -138,6 +145,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -156,6 +164,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -174,6 +183,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -192,6 +202,7 @@ describe("Node Service Test", () => {
 
             const result = await service.createNode(
                 {
+                    id: undefined,
                     name: "Paredes",
                     shortName: "PRDS",
                     isDepot: false,
@@ -209,6 +220,7 @@ describe("Node Service Test", () => {
 
     describe("Get nodes list test", () => {
         const node1: INodeDTO = {
+            id: undefined,
             name: "Fonte da Moura",
             shortName: "FTM",
             isDepot: false,
@@ -217,6 +229,7 @@ describe("Node Service Test", () => {
             longitude: -8.662789
         }
         const node2: INodeDTO = {
+            id: undefined,
             name: "Boavista",
             shortName: "BOAV",
             isDepot: false,
