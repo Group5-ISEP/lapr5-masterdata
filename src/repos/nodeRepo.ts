@@ -15,34 +15,19 @@ export default class NodeRepo implements INodeRepo {
 
     exists(t: Node): Promise<boolean> {
         throw new Error("Method not implemented.");
+        //const query = { shortName: node.shortName };
+
+        //const nodeDocument = await this.nodeSchema.findOne(query);
     }
 
     public async save(node: Node): Promise<Node> {
 
-        const query = { shortName: node.shortName };
-
-        const nodeDocument = await this.nodeSchema.findOne(query);
-
         try {
-            if (nodeDocument === null) {
-                const rawNode: any = NodeMap.toPersistence(node);
+            const rawNode: any = NodeMap.toPersistence(node);
 
-                const nodeCreated = await this.nodeSchema.create(rawNode);
+            const nodeCreated = await this.nodeSchema.create(rawNode);
 
-                return NodeMap.toDomain(nodeCreated);
-            } else {
-                nodeDocument.shortName = node.shortName;
-                nodeDocument.name = node.name;
-                nodeDocument.isDepot = node.isDepot;
-                nodeDocument.isReliefPoint = node.isReliefPoint;
-                nodeDocument.longitude = node.longitude;
-                nodeDocument.latitude = node.latitude;
-
-
-                await nodeDocument.save();
-
-                return node;
-            }
+            return NodeMap.toDomain(nodeCreated);
         } catch (err) {
             throw err;
         }
