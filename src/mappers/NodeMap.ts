@@ -12,6 +12,7 @@ export class NodeMap extends Mapper<Node>{
 
     public static toDTO(node: Node): INodeDTO {
         return {
+            id: node.id.toString(),
             shortName: node.shortName,
             name: node.name,
             isDepot: node.isDepot,
@@ -29,7 +30,7 @@ export class NodeMap extends Mapper<Node>{
             isReliefPoint: raw.isReliefPoint,
             longitude: raw.longitude,
             latitude: raw.latitude,
-        }, new UniqueEntityID(raw._id))
+        }, new UniqueEntityID(raw.id))
 
         nodeOrError.isFailure ? console.log(nodeOrError.error) : '';
 
@@ -39,6 +40,7 @@ export class NodeMap extends Mapper<Node>{
     public static toPersistence(node: Node): INodePersistence {
 
         return {
+            id: node.id.toString(),
             shortName: node.shortName,
             name: node.name,
             isDepot: node.isDepot,

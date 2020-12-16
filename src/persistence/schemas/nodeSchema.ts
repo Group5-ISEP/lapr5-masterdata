@@ -3,14 +3,23 @@ import mongoose from 'mongoose';
 
 const NodeSchema = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            required: [true, 'Please enter node id'],
+            index: true,
+            unique: true
+        },
         shortName: {
             type: String,
             required: [true, 'Please enter node name'],
+            index: true,
+            unique: true
         },
 
         name: {
             type: String,
             required: [true, 'Please enter node name'],
+            unique: true
         },
 
         isDepot: {
