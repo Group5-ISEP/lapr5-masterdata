@@ -9,25 +9,24 @@ import INodeService from "./IServices/INodeService";
 
 @Service()
 export default class NodeService implements INodeService {
-    [x: string]: any;
-
 
     constructor(
         @Inject(config.repos.node.name) private nodeRepoInstance: INodeRepo
     ) { }
+
     public async createNode(nodeDTO: INodeDTO): Promise<Result<INodeDTO>> {
         try {
-            const nodeOrError = await Node.create(nodeDTO);
+            const nodeOrError = Node.create(nodeDTO);
 
             if (nodeOrError.isFailure) {
                 return Result.fail<INodeDTO>(nodeOrError.errorValue());
             }
 
-            const nodeResult = nodeOrError.getValue();
+            const node = nodeOrError.getValue();
 
-            await this.nodeRepoInstance.save(nodeResult);
+            const nodeSaved = await this.nodeRepoInstance.save(node);
 
-            const lineDTOResult = NodeMap.toDTO(nodeResult) as INodeDTO;
+            const lineDTOResult = NodeMap.toDTO(nodeSaved) as INodeDTO;
             return Result.ok<INodeDTO>(lineDTOResult)
 
         } catch (error) {
