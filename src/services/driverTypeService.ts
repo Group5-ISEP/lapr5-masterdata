@@ -41,7 +41,7 @@ export default class DriverTypeService implements IDriverTypeService {
 
             return Result.ok<IDriverTypeDTO[]>(dtoList)
         } catch (error) {
-            Result.fail<IDriverTypeDTO[]>(error)
+            throw error
         }
     }
 

@@ -31,13 +31,14 @@ export default class DriverTypeController implements IDriverTypeController /* TO
     };
 
     public async listDriverTypes(req: Request, res: Response, next: NextFunction) {
-        const resultList = await this.driverTypeServiceInstance.listDriverTypes()
+        try {
+            const resultList = await this.driverTypeServiceInstance.listDriverTypes()
 
-        if (resultList.isFailure) {
-            return res.status(500).send(resultList.errorValue())
+            res.status(200).json(resultList.getValue())
+        } catch (error) {
+            return next(error)
         }
 
-        res.status(200).json(resultList.getValue())
     }
 
 }
