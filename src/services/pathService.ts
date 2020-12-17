@@ -16,17 +16,17 @@ export default class PathService implements IPathService {
     public async createPath(pathDTO: IPathDTO): Promise<Result<IPathDTO>> {
         try {
 
-            const pathOrError = await Path.create(pathDTO);
+            const pathOrError = Path.create(pathDTO);
 
             if (pathOrError.isFailure) {
                 return Result.fail<IPathDTO>(pathOrError.errorValue());
             }
 
-            const pathResult = pathOrError.getValue();
+            const path = pathOrError.getValue();
 
-            await this.pathRepo.save(pathResult);
+            const pathSaved = await this.pathRepo.save(path);
 
-            const pathDTOResult = PathMap.toDTO(pathResult) as IPathDTO;
+            const pathDTOResult = PathMap.toDTO(pathSaved) as IPathDTO;
             return Result.ok<IPathDTO>(pathDTOResult)
         } catch (e) {
             throw e;
@@ -36,7 +36,7 @@ export default class PathService implements IPathService {
     public async getPathsOfLine(lineCode: string): Promise<Result<IPathDTO[]>> {
         try {
             const paths = await this.pathRepo.findByLine(lineCode);
-//            console.log("Found " + paths.length + " paths in line " + lineCode);
+            //            console.log("Found " + paths.length + " paths in line " + lineCode);
             var pathsDTO = [];
             for (var i = 0; i < paths.length; i++) {
                 const DTO = PathMap.toDTO(paths[i]) as IPathDTO;
