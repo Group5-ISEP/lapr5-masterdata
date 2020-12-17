@@ -13,11 +13,13 @@ export default class DriverTypeRepo implements IDriverTypeRepo {
 
 
     public async getAll(): Promise<DriverType[]> {
-        const result = await this.driverTypeSchema.find()
-
-        const driverTypeList = result.map(doc => DriverTypeMap.toDomain(doc))
-
-        return driverTypeList
+        try {
+            const result = await this.driverTypeSchema.find()
+            const driverTypeList = result.map(doc => DriverTypeMap.toDomain(doc))
+            return driverTypeList
+        } catch (error) {
+            throw error
+        }
     }
 
     exists(t: DriverType): Promise<boolean> {

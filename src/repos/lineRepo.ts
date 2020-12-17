@@ -12,12 +12,13 @@ export default class LineRepo implements ILineRepo {
     ) { }
 
     public async getLines(): Promise<Line[]> {
-
-        const lineDocumenList = await this.lineSchema.find()
-
-        const lineList = lineDocumenList.map(lineDocument => LineMap.toDomain(lineDocument))
-
-        return lineList
+        try {
+            const lineDocumenList = await this.lineSchema.find()
+            const lineList = lineDocumenList.map(lineDocument => LineMap.toDomain(lineDocument))
+            return lineList
+        } catch (error) {
+            throw error
+        }
     }
 
     exists(t: Line): Promise<boolean> {

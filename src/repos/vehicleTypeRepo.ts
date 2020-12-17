@@ -13,11 +13,13 @@ export default class VehicleTypeRepo implements IVehicleTypeRepo {
     ) { }
 
     public async getAll(): Promise<VehicleType[]> {
-        const result = await this.vehicleTypeSchema.find()
-
-        const vehicleTypeList = result.map(doc => VehicleTypeMap.toDomain(doc))
-
-        return vehicleTypeList
+        try {
+            const result = await this.vehicleTypeSchema.find()
+            const vehicleTypeList = result.map(doc => VehicleTypeMap.toDomain(doc))
+            return vehicleTypeList
+        } catch (error) {
+            throw error
+        }
     }
 
     exists(t: VehicleType): Promise<boolean> {
