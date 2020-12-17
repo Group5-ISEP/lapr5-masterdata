@@ -12,7 +12,6 @@ const NodeSchema = new mongoose.Schema(
         shortName: {
             type: String,
             required: [true, 'Please enter node name'],
-            index: true,
             unique: true
         },
 
