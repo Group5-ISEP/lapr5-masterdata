@@ -15,7 +15,7 @@ export default class LineController implements ILineController /* TODO: extends 
             const lineOrError = await this.lineServiceInstance.createLine(req.body as ILineDTO) as Result<ILineDTO>;
 
             if (lineOrError.isFailure) {
-                return res.status(402).send(lineOrError.errorValue());
+                return res.status(409).send(lineOrError.errorValue());
             }
 
             const LineDTO = lineOrError.getValue();
