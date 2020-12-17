@@ -15,12 +15,15 @@ export default class LineService implements ILineService {
 
 
     public async listLines(): Promise<Result<ILineDTO[]>> {
+        try {
+            const lineList = await this.lineRepo.getLines()
 
-        const lineList = await this.lineRepo.getLines()
+            let lineDtoList = lineList.map(line => LineMap.toDTO(line))
 
-        let lineDtoList = lineList.map(line => LineMap.toDTO(line))
-
-        return Result.ok(lineDtoList)
+            return Result.ok(lineDtoList)
+        } catch (error) {
+            throw error
+        }
     }
 
     public async createLine(lineDTO: ILineDTO): Promise<Result<ILineDTO>> {

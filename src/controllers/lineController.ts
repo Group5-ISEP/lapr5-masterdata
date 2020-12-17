@@ -27,10 +27,16 @@ export default class LineController implements ILineController /* TODO: extends 
     };
 
     public async listLines(req: Request, res: Response, next: NextFunction) {
-        const lineListOrError = await this.lineServiceInstance.listLines()
+        try {
+            const lineListOrError = await this.lineServiceInstance.listLines()
 
-        const list = lineListOrError.getValue()
-        return res.status(200).json(list)
+            const list = lineListOrError.getValue()
+
+            return res.status(200).json(list)
+        } catch (error) {
+            return next(error)
+        }
+
     }
 
 }
