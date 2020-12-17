@@ -14,11 +14,6 @@ interface VehicleTypeProps {
 
 export class VehicleType extends AggregateRoot<VehicleTypeProps>{
 
-    get id(): UniqueEntityID {
-        return this._id;
-    }
-
-
     get name(): string {
         return this.props.name
     }

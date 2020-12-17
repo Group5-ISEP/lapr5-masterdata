@@ -14,10 +14,6 @@ interface PathProps {
 }
 
 export class Path extends AggregateRoot<PathProps> {
-    //Not used but exists for inner methods
-    get id(): UniqueEntityID {
-        return this._id;
-    }
 
     get lineCode(): string {
         return this.props.lineCode;

@@ -8,10 +8,6 @@ interface DriverTypeProps {
 
 export class DriverType extends AggregateRoot<DriverTypeProps>{
 
-    get id(): UniqueEntityID {
-        return this._id;
-    }
-
     get description(): string {
         return this.props.description;
     }

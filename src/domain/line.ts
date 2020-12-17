@@ -13,11 +13,6 @@ interface LineProps {
 
 export class Line extends AggregateRoot<LineProps>{
 
-    get id(): UniqueEntityID {
-        return this._id;
-    }
-
-
     get code(): string {
         return this.props.code
     }
