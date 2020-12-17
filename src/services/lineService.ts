@@ -26,17 +26,17 @@ export default class LineService implements ILineService {
     public async createLine(lineDTO: ILineDTO): Promise<Result<ILineDTO>> {
         try {
 
-            const lineOrError = await Line.create(lineDTO);
+            const lineOrError = Line.create(lineDTO);
 
             if (lineOrError.isFailure) {
                 return Result.fail<ILineDTO>(lineOrError.errorValue());
             }
 
-            const lineResult = lineOrError.getValue();
+            const line = lineOrError.getValue();
 
-            await this.lineRepo.save(lineResult);
+            const lineSaved = await this.lineRepo.save(line);
 
-            const lineDTOResult = LineMap.toDTO(lineResult) as ILineDTO;
+            const lineDTOResult = LineMap.toDTO(lineSaved) as ILineDTO;
             return Result.ok<ILineDTO>(lineDTOResult)
         } catch (e) {
             throw e;
