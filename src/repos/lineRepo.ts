@@ -26,28 +26,12 @@ export default class LineRepo implements ILineRepo {
 
     public async save(line: Line): Promise<Line> {
 
-        const query = { $or: [{ code: line.code }, { name: line.name }] }
-
-        const lineDocument = await this.lineSchema.findOne(query)
-
         try {
-            if (lineDocument === null) {
-                const rawLine: any = LineMap.toPersistence(line)
+            const rawLine: any = LineMap.toPersistence(line)
 
-                const lineCreated = await this.lineSchema.create(rawLine)
+            const lineCreated = await this.lineSchema.create(rawLine)
 
-                return LineMap.toDomain(lineCreated)
-            } else {
-                lineDocument.code = line.code,
-                    lineDocument.name = line.name,
-                    lineDocument.colorRGB = line.colorRGB,
-                    lineDocument.terminalNodes = line.terminalNodes,
-                    lineDocument.allowedDriverTypes = line.allowedDriverTypes,
-                    lineDocument.allowedVehicleTypes = line.allowedVehicleTypes
-                await lineDocument.save()
-
-                return line
-            }
+            return LineMap.toDomain(lineCreated)
         } catch (error) {
             throw error
         }
