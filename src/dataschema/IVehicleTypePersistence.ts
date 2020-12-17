@@ -1,4 +1,5 @@
 export default interface IVehicleTypePersistence {
+    id: string,
     name: string,
     autonomy: number,
     costByKm: number,

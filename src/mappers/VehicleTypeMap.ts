@@ -7,6 +7,7 @@ import IVehicleTypeDTO from "../dto/IVehicleTypeDTO";
 export class VehicleTypeMap extends Mapper<VehicleType>{
     public static toDTO(vehicleType: VehicleType): IVehicleTypeDTO {
         return {
+            id: vehicleType.id.toString(),
             name: vehicleType.name,
             autonomy: vehicleType.autonomy,
             costByKm: vehicleType.costByKm,
@@ -28,7 +29,7 @@ export class VehicleTypeMap extends Mapper<VehicleType>{
                 emissions: vehicleTypeRaw.emissions,
                 energySource: vehicleTypeRaw.energySource
             },
-            new UniqueEntityID(vehicleTypeRaw._id)
+            new UniqueEntityID(vehicleTypeRaw.id)
         );
 
         vehicleTypeOrError.isFailure ? console.log(vehicleTypeOrError.error) : '';
@@ -38,6 +39,7 @@ export class VehicleTypeMap extends Mapper<VehicleType>{
 
     public static toPersistence(vehicleType: VehicleType): IVehicleTypePersistence {
         const raw = {
+            id: vehicleType.id.toString(),
             name: vehicleType.name,
             autonomy: vehicleType.autonomy,
             costByKm: vehicleType.costByKm,
@@ -45,7 +47,7 @@ export class VehicleTypeMap extends Mapper<VehicleType>{
             averageSpeed: vehicleType.averageSpeed,
             emissions: vehicleType.emissions,
             energySource: vehicleType.energySource
-        }
+        } as IVehicleTypePersistence
         return raw
     }
 }
