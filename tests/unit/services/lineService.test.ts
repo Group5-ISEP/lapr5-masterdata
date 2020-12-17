@@ -12,6 +12,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -21,7 +22,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -34,6 +35,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "  ",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -43,7 +45,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -56,6 +58,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: null,
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -65,7 +68,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -78,6 +81,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: null,
                     allowedDriverTypes: [],
@@ -87,7 +91,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -100,6 +104,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "  ",
                     allowedDriverTypes: [],
@@ -109,7 +114,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -122,6 +127,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: null,
@@ -131,7 +137,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -144,6 +150,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -153,7 +160,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -166,12 +173,13 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
                     allowedVehicleTypes: [],
                     colorRGB: null,
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -184,6 +192,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -193,7 +202,7 @@ describe("Line Service Test", () => {
                         green: -1,
                         blue: -1,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -206,6 +215,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -215,7 +225,7 @@ describe("Line Service Test", () => {
                         green: 256,
                         blue: 256,
                     },
-                    terminalNodes: ["Aliados", "Viso"]
+                    terminalNodes: ["nodeid1", "nodeid2"]
                 }
             )
 
@@ -228,6 +238,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -237,7 +248,7 @@ describe("Line Service Test", () => {
                         green: 10,
                         blue: 10,
                     },
-                    terminalNodes: ["Aliados"]
+                    terminalNodes: ["nodeid1"]
                 }
             )
 
@@ -250,6 +261,7 @@ describe("Line Service Test", () => {
 
             const result = await service.createLine(
                 {
+                    id: undefined,
                     code: "201",
                     name: "Viso_Aliados",
                     allowedDriverTypes: [],
@@ -271,6 +283,7 @@ describe("Line Service Test", () => {
 
 
         const line1: ILineDTO = {
+            id: "lineid1",
             code: "201",
             name: "Viso_Aliados",
             allowedDriverTypes: [],
@@ -280,7 +293,7 @@ describe("Line Service Test", () => {
                 green: 10,
                 blue: 10,
             },
-            terminalNodes: ["Aliados", "Viso"]
+            terminalNodes: ["nodeid1", "nodeid2"]
         }
 
         const mockRepo = new MockLineRepo()
