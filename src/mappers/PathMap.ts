@@ -22,7 +22,7 @@ export class PathMap extends Mapper<Path> {
         } as IPathDTO;
     }
 
-    public static async toDomain(raw: any): Promise<Path> {
+    public static toDomain(raw: any): Path {
         const pathOrError = Path.create({
             lineCode: raw.lineCode,
             direction: raw.direction,
