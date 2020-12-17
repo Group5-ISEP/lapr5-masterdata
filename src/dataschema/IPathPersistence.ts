@@ -1,6 +1,7 @@
 import { Segment } from "../domain/segment";
 
 export interface IPathPersistence {
+    id: string,
     lineCode: String;
     direction: String;
     segmentList: Segment[];

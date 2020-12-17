@@ -4,16 +4,20 @@ import mongoose from 'mongoose';
 
 const PathSchema = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            required: [true, 'Please enter the path id'],
+            index: true,
+            unique: true
+        },
         lineCode: {
             type: String,
             required: [true, 'Please enter the line of the path'],
-            index: true
         },
 
         direction: {
             type: String,
             required: [true, 'Please enter the paths direction'],
-            index: true
         },
 
         segmentList: {
@@ -40,11 +44,10 @@ const PathSchema = new mongoose.Schema(
         isEmpty: {
             type: Boolean,
             required: true,
-            index: true
         }
 
     },
     { timestamps: true },
 );
 
-export default mongoose.model<IPathPersistence & mongoose.Document>('PathSchema', PathSchema);
+export default mongoose.model<IPathPersistence & mongoose.Document>('Path', PathSchema);

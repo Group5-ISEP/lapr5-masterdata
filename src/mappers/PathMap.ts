@@ -12,6 +12,7 @@ export class PathMap extends Mapper<Path> {
 
     public static toDTO(path: Path): IPathDTO {
         return {
+            id: path.id.toString(),
             lineCode: path.lineCode,
             direction: path.direction,
             segmentList: path.segmentList,
@@ -29,7 +30,7 @@ export class PathMap extends Mapper<Path> {
             firstNode: raw.firstNode,
             lastNode: raw.lastNode,
             isEmpty: raw.isEmpty
-        }, new UniqueEntityID(raw._id))
+        } as IPathDTO, new UniqueEntityID(raw.id))
 
         pathOrError.isFailure ? console.log(pathOrError.error) : '';
 
@@ -38,6 +39,7 @@ export class PathMap extends Mapper<Path> {
 
     public static toPersistence(path: Path): any {
         const a = {
+            id: path.id.toString(),
             lineCode: path.lineCode,
             direction: path.direction,
             segmentList: path.segmentList,
