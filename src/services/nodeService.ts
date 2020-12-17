@@ -40,7 +40,7 @@ export default class NodeService implements INodeService {
             const nodeDtoList = nodes.map(node => NodeMap.toDTO(node))
             return Result.ok(nodeDtoList)
         } catch (e) {
-            return Result.fail(e)
+            return e
         }
     }
 }

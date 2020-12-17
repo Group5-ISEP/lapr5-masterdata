@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { Inject } from 'typedi';
 import config from "../../config";
-import { Result } from '../core/logic/Result';
 import INodeDTO from '../dto/INodeDTO';
 import INodeService from '../services/IServices/INodeService';
 import INodeController from "./IControllers/INodeController";
@@ -31,11 +30,6 @@ export default class NodeController implements INodeController {
 
         try {
             const nodesOrError = await this.nodeServiceInstance.listNodes();
-
-            if (nodesOrError.isFailure) {
-                return res.status(500).send(nodesOrError.errorValue());
-            }
-
             const nodesDTO = nodesOrError.getValue();
             return res.status(200).json(nodesDTO);
         }
