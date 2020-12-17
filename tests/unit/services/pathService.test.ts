@@ -11,6 +11,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -31,6 +32,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "From",
                     firstNode: "ALIAD",
@@ -51,6 +53,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -70,6 +73,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "From",
                     firstNode: "ALIAD",
@@ -89,6 +93,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "  ",
                     direction: "To",
                     firstNode: "VIS",
@@ -108,6 +113,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: null,
                     direction: "To",
                     firstNode: "VIS",
@@ -127,6 +133,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "whatever",
                     firstNode: "VIS",
@@ -146,6 +153,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "  ",
                     firstNode: "VIS",
@@ -165,6 +173,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: null,
                     firstNode: "VIS",
@@ -184,6 +193,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "  ",
@@ -203,6 +213,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: null,
@@ -222,6 +233,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -241,6 +253,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -260,6 +273,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -278,6 +292,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -297,6 +312,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -316,6 +332,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -335,6 +352,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -354,6 +372,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -373,6 +392,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -392,6 +412,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -411,6 +432,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -430,6 +452,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -449,6 +472,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -468,6 +492,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -487,6 +512,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -506,6 +532,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -527,6 +554,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -548,6 +576,7 @@ describe("Path Service Test", () => {
 
             const result = await service.createPath(
                 {
+                    id: undefined,
                     lineCode: "201",
                     direction: "To",
                     firstNode: "VIS",
@@ -570,6 +599,7 @@ describe("Path Service Test", () => {
     describe("Get paths by line test", () => {
 
         const path1: IPathDTO = {
+            id: "pathid1",
             lineCode: "201",
             direction: "To",
             firstNode: "VIS",
@@ -582,6 +612,7 @@ describe("Path Service Test", () => {
         }
 
         const path2: IPathDTO = {
+            id: "pathid2",
             lineCode: "201",
             direction: "From",
             firstNode: "ALIAD",
