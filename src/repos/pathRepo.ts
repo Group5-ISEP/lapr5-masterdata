@@ -35,26 +35,13 @@ export default class PathRepo implements IPathRepo {
 
     public async save(path: Path): Promise<Path> {
 
-        const query = { lineCode: path.lineCode, direction: path.direction, isEmpty: path.isEmpty };
-
-        const pathDocument = await this.pathSchema.findOne(query);
-
         try {
-            if (pathDocument === null) {
-                const rawPath: any = PathMap.toPersistence(path);
+            const rawPath: any = PathMap.toPersistence(path);
 
-                const pathCreated = await this.pathSchema.create(rawPath);
+            const pathCreated = await this.pathSchema.create(rawPath);
 
-                return PathMap.toDomain(pathCreated);
-            } else {
-                pathDocument.id = path.id;
-                pathDocument.segmentList = path.segmentList;
-                pathDocument.firstNode = path.firstNode;
-                pathDocument.lastNode = path.lastNode;
-                await pathDocument.save();
+            return PathMap.toDomain(pathCreated);
 
-                return path;
-            }
         } catch (err) {
             throw err;
         }
