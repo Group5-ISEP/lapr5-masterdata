@@ -11,6 +11,7 @@ describe("Driver Type Service Test", () => {
 
             const result = await service.createDriverType(
                 {
+                    id: undefined,
                     description: "speaks english"
                 }
             )
@@ -24,6 +25,7 @@ describe("Driver Type Service Test", () => {
 
             const result = await service.createDriverType(
                 {
+                    id: undefined,
                     description: "   "
                 }
             )
@@ -37,6 +39,7 @@ describe("Driver Type Service Test", () => {
 
             const result = await service.createDriverType(
                 {
+                    id: undefined,
                     description: null
                 }
             )
@@ -47,7 +50,7 @@ describe("Driver Type Service Test", () => {
 
     describe("Test get driver types", () => {
 
-        const dt1: IDriverTypeDTO = { description: "speaks enlish" }
+        const dt1: IDriverTypeDTO = { id: "random uuid", description: "speaks enlish" }
 
         const repo = new MockDriverTypeRepo()
         repo.mockList.push(DriverTypeMap.toDomain(dt1))
