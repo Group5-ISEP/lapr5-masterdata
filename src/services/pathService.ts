@@ -36,19 +36,8 @@ export default class PathService implements IPathService {
     public async getPathsOfLine(lineCode: string): Promise<Result<IPathDTO[]>> {
         try {
             const paths = await this.pathRepo.findByLine(lineCode);
-            //            console.log("Found " + paths.length + " paths in line " + lineCode);
-            var pathsDTO = [];
-            for (var i = 0; i < paths.length; i++) {
-                const DTO = PathMap.toDTO(paths[i]) as IPathDTO;
-                pathsDTO.push(DTO);
-                console.log(paths[i]);
-            }
-            if (paths.length > 0) {
-                return Result.ok<IPathDTO[]>(pathsDTO);
-            }
-            else {
-                return Result.fail<IPathDTO[]>("No paths with line " + lineCode + " found");
-            }
+            const pathsDTO = paths.map(path => PathMap.toDTO(path))
+            return Result.ok<IPathDTO[]>(pathsDTO);
         } catch (e) {
             throw e;
         }
