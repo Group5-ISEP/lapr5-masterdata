@@ -1,4 +1,5 @@
 export default interface ILinePersistence {
+    id: string,
     code: string,
     name: string,
     terminalNodes: string[],

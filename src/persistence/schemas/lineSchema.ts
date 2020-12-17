@@ -3,15 +3,20 @@ import mongoose from "mongoose";
 
 const Line = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            required: [true, 'Please enter line id'],
+            index: true,
+            unique: true
+        },
         code: {
             type: String,
             required: [true, 'Please enter line code'],
-            index: true
+            unique: true
         },
         name: {
             type: String,
             required: [true, 'Please enter line name'],
-            index: true
         },
         terminalNodes: [String],
         colorRGB: { red: Number, green: Number, blue: Number },

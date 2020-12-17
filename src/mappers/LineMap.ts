@@ -8,6 +8,7 @@ export class LineMap extends Mapper<Line>{
 
     public static toDTO(line: Line): ILineDTO {
         return {
+            id: line.id.toString(),
             code: line.code,
             name: line.name,
             terminalNodes: line.terminalNodes,
@@ -28,7 +29,7 @@ export class LineMap extends Mapper<Line>{
                 allowedDriverTypes: lineRaw.allowedDriverTypes,
                 allowedVehicleTypes: lineRaw.allowedVehicleTypes
             },
-            new UniqueEntityID(lineRaw._id)
+            new UniqueEntityID(lineRaw.id)
         );
 
         lineOrError.isFailure ? console.log(lineOrError.error) : '';
@@ -38,6 +39,7 @@ export class LineMap extends Mapper<Line>{
 
     public static toPersistence(line: Line): ILinePersistence {
         return {
+            id: line.id.toString(),
             code: line.code,
             name: line.name,
             terminalNodes: line.terminalNodes,

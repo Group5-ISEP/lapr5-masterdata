@@ -1,4 +1,5 @@
 export default interface ILineDTO {
+    id: string,
     code: string,
     name: string,
     terminalNodes: string[],
