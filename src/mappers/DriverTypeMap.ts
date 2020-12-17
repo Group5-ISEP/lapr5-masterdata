@@ -8,6 +8,7 @@ export class DriverTypeMap extends Mapper<DriverType>{
 
     public static toDTO(driverType: DriverType): IDriverTypeDTO {
         return {
+            id: driverType.id.toString(),
             description: driverType.description,
         } as IDriverTypeDTO;
     }
@@ -17,7 +18,7 @@ export class DriverTypeMap extends Mapper<DriverType>{
             {
                 description: driverTypeRaw.description,
             },
-            new UniqueEntityID(driverTypeRaw._id)
+            new UniqueEntityID(driverTypeRaw.id)
         );
 
         driverTypeOrError.isFailure ? console.log(driverTypeOrError.error) : '';
@@ -27,6 +28,7 @@ export class DriverTypeMap extends Mapper<DriverType>{
 
     public static toPersistence(driverType: DriverType): IDriverTypePersistence {
         const raw = {
+            id: driverType.id.toString(),
             description: driverType.description
         }
         return raw
