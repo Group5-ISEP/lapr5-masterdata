@@ -29,17 +29,17 @@ export default class VehicleTypeService implements IVehicleTypeService {
     public async createVehicleType(vehicleTypeDTO: IVehicleTypeDTO): Promise<Result<IVehicleTypeDTO>> {
         try {
 
-            const vehicleTypeOrError = await VehicleType.create(vehicleTypeDTO);
+            const vehicleTypeOrError = VehicleType.create(vehicleTypeDTO);
 
             if (vehicleTypeOrError.isFailure) {
                 return Result.fail<IVehicleTypeDTO>(vehicleTypeOrError.errorValue());
             }
 
-            const vehicleTypeResult = vehicleTypeOrError.getValue();
+            const vehicleType = vehicleTypeOrError.getValue();
 
-            await this.vehicleTypeRepo.save(vehicleTypeResult);
+            const vehicleTypeSaved = await this.vehicleTypeRepo.save(vehicleType);
 
-            const vehicleTypeDTOResult = VehicleTypeMap.toDTO(vehicleTypeResult) as IVehicleTypeDTO;
+            const vehicleTypeDTOResult = VehicleTypeMap.toDTO(vehicleTypeSaved) as IVehicleTypeDTO;
             return Result.ok<IVehicleTypeDTO>(vehicleTypeDTOResult)
         } catch (e) {
             throw e;
