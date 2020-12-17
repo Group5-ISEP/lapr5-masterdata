@@ -15,7 +15,7 @@ export default class NodeController implements INodeController {
             const nodeOrError = await this.nodeServiceInstance.createNode(req.body as INodeDTO);
 
             if (nodeOrError.isFailure) {
-                return res.status(406).send(nodeOrError.errorValue());
+                return res.status(409).send(nodeOrError.errorValue());
             }
 
             const nodeDTO = nodeOrError.getValue();
