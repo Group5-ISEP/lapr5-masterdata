@@ -12,6 +12,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: 10,
                     averageConsumption: 10,
@@ -31,6 +32,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "  ",
                     autonomy: 10,
                     averageConsumption: 10,
@@ -50,6 +52,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: null,
                     autonomy: 10,
                     averageConsumption: 10,
@@ -69,6 +72,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: -10,
                     averageConsumption: 10,
@@ -88,6 +92,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: 10,
                     averageConsumption: -10,
@@ -107,6 +112,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: 10,
                     averageConsumption: 10,
@@ -126,6 +132,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: 10,
                     averageConsumption: 10,
@@ -145,6 +152,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: 10,
                     averageConsumption: 10,
@@ -164,6 +172,7 @@ describe("Vehicle Type Service Test", () => {
 
             const result = await service.createVehicleType(
                 {
+                    id: undefined,
                     name: "autocarro a gasoleo",
                     autonomy: 10,
                     averageConsumption: 10,
@@ -181,6 +190,7 @@ describe("Vehicle Type Service Test", () => {
     describe("Get vehicle types", () => {
 
         const vt1: IVehicleTypeDTO = {
+            id: "random uuid",
             name: "autocarro a gasoleo",
             autonomy: 10,
             averageConsumption: 10,
