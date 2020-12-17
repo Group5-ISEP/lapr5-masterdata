@@ -49,18 +49,14 @@ export default class PathRepo implements IPathRepo {
 
     public async findByLine(line: string): Promise<Path[]> {
 
-        const query = { lineCode: line };
-        const pathRecord = this.pathSchema.find(query);
-
-        if (pathRecord != null) {
-            var paths = [];
-            (await pathRecord).forEach(async function (value) {
-                const p = await PathMap.toDomain(value);
-                paths.push(p);
-            });
-            //console.log(paths);
-            return paths;
+        try {
+            const query = { lineCode: line };
+            const pathRecords = await this.pathSchema.find(query);
+            const pathList = pathRecords.map(doc => PathMap.toDomain(doc))
+            return pathList
+        } catch (error) {
+            throw error
         }
-        else return null;
+
     }
 }
