@@ -16,17 +16,17 @@ export default class DriverTypeService implements IDriverTypeService {
     public async createDriverType(driverTypeDTO: IDriverTypeDTO): Promise<Result<IDriverTypeDTO>> {
         try {
 
-            const driverTypeOrError = await DriverType.create(driverTypeDTO);
+            const driverTypeOrError = DriverType.create(driverTypeDTO);
 
             if (driverTypeOrError.isFailure) {
                 return Result.fail<IDriverTypeDTO>(driverTypeOrError.errorValue());
             }
 
-            const driverTypeResult = driverTypeOrError.getValue();
+            const driverType = driverTypeOrError.getValue();
 
-            await this.driverTypeRepo.save(driverTypeResult);
+            const driverTypeSaved = await this.driverTypeRepo.save(driverType);
 
-            const driverTypeDTOResult = DriverTypeMap.toDTO(driverTypeResult) as IDriverTypeDTO;
+            const driverTypeDTOResult = DriverTypeMap.toDTO(driverTypeSaved) as IDriverTypeDTO;
             return Result.ok<IDriverTypeDTO>(driverTypeDTOResult)
         } catch (e) {
             throw e;
