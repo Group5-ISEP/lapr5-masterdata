@@ -21,7 +21,7 @@ export default class VehicleTypeService implements IVehicleTypeService {
 
             return Result.ok<IVehicleTypeDTO[]>(dtoList)
         } catch (error) {
-            return Result.fail<IVehicleTypeDTO[]>(error)
+            throw error
         }
 
     }

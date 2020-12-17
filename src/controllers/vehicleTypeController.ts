@@ -29,13 +29,13 @@ export default class VehicleTypeController implements IVehicleTypeController /* 
     }
 
     public async listVehicleTypes(req: Request, res: Response, next: NextFunction) {
-        const resultList = await this.vehicleTypeServiceInstance.listVehicleTypes()
+        try {
+            const resultList = await this.vehicleTypeServiceInstance.listVehicleTypes()
 
-        if (resultList.isFailure) {
-            res.status(500).send(resultList.errorValue())
+            res.status(200).json(resultList.getValue())
+        } catch (error) {
+            return next(error)
         }
-
-        res.status(200).json(resultList.getValue())
     }
 
 }
