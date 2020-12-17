@@ -18,7 +18,7 @@ export default class DriverTypeController implements IDriverTypeController /* TO
             const driverTypeOrError = await this.driverTypeServiceInstance.createDriverType(req.body as IDriverTypeDTO) as Result<IDriverTypeDTO>;
 
             if (driverTypeOrError.isFailure) {
-                return res.status(402).send(driverTypeOrError.errorValue());
+                return res.status(409).send(driverTypeOrError.errorValue());
             }
 
             const driverTypeDTO = driverTypeOrError.getValue();
