@@ -26,30 +26,12 @@ export default class VehicleTypeRepo implements IVehicleTypeRepo {
 
     public async save(vehicleType: VehicleType): Promise<VehicleType> {
 
-        const query = { name: vehicleType.name }
-
-        const vehicleTypeDocument = await this.vehicleTypeSchema.findOne(query)
-
         try {
-            if (vehicleTypeDocument === null) {
-                const rawVehicleType: any = VehicleTypeMap.toPersistence(vehicleType)
+            const rawVehicleType: any = VehicleTypeMap.toPersistence(vehicleType)
 
-                const vehicleTypeCreated = await this.vehicleTypeSchema.create(rawVehicleType)
+            const vehicleTypeCreated = await this.vehicleTypeSchema.create(rawVehicleType)
 
-                return VehicleTypeMap.toDomain(vehicleTypeCreated)
-            } else {
-                vehicleTypeDocument.name = vehicleType.name
-                vehicleTypeDocument.autonomy = vehicleType.autonomy
-                vehicleTypeDocument.averageConsumption = vehicleType.averageConsumption
-                vehicleTypeDocument.averageSpeed = vehicleType.averageSpeed
-                vehicleTypeDocument.costByKm = vehicleType.costByKm
-                vehicleTypeDocument.emissions = vehicleType.emissions
-                vehicleTypeDocument.energySource = vehicleType.energySource
-
-                await vehicleTypeDocument.save()
-
-                return vehicleType
-            }
+            return VehicleTypeMap.toDomain(vehicleTypeCreated)
         } catch (error) {
             throw error
         }
