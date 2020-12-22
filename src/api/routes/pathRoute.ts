@@ -14,6 +14,7 @@ export default (app: Router) => {
     route.post('',
         celebrate({
             body: Joi.object({
+                //id: Joi.string().required(),
                 lineCode: Joi.string().required(),
                 direction: Joi.string().required(),
                 segmentList: Joi.array().required(), //SegmentList
