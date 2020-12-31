@@ -50,7 +50,7 @@ export class Path extends AggregateRoot<PathProps> {
         if (!lineCode || lineCode.trim().length <= 0) {
             return Result.fail<Path>("Line code must be specified")
         }
-        if (!direction || direction.trim().length <= 0 || (direction != 'Go' && direction != 'Return')) {
+        if (!direction || direction.trim().length <= 0 || (direction.toLowerCase() != 'go' && direction.toLowerCase() != 'return')) {
             return Result.fail<Path>("Direction 'Go' or 'Return' must be specified")
         }
         if (!firstNode || firstNode.trim().length <= 0) {
