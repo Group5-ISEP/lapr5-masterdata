@@ -2,17 +2,13 @@ import { AggregateRoot } from "../core/domain/AggregateRoot";
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import { Result } from "../core/logic/Result";
 import { UserId } from "./userId";
-//import { Role } from "./role";
-//import { UserPassword } from "./userPassword";
 import { Guard } from "../core/logic/Guard";
 
 
 interface UserProps {
-    firstName: string;
-    lastName: string;
     email: string;
     password: string;
-    role: string;
+    type: string;
 }
 
 export class User extends AggregateRoot<UserProps> {
@@ -28,22 +24,6 @@ export class User extends AggregateRoot<UserProps> {
         return this.props.email;
     }
 
-    get firstName (): string {
-        return this.props.firstName
-    }
-
-    set firstName(fname: string) {
-        this.props.firstName = fname;
-    }
-
-    get lastName (): string {
-        return this.props.lastName;
-    }
-
-    set lastName(lname: string) {
-        this.props.lastName = lname;
-    }
-
     get password(): string {
         return this.props.password;
     }
@@ -52,12 +32,12 @@ export class User extends AggregateRoot<UserProps> {
         this.props.password = pass;
     }
     
-    get role (): string {
-        return this.props.role;
+    get type (): string {
+        return this.props.type;
     }
   
-    set role (value: string) {
-        this.props.role = value;
+    set type (value: string) {
+        this.props.type = value;
     }
 
     private constructor (props: UserProps, id?: UniqueEntityID) {
@@ -67,11 +47,9 @@ export class User extends AggregateRoot<UserProps> {
     public static create (props: UserProps, id?: UniqueEntityID): Result<User> {
 
         const guardedProps = [
-            { argument: props.firstName, argumentName: 'firstName' },
-            { argument: props.lastName, argumentName: 'lastName' },
             { argument: props.password, argumentName: 'password' },
             { argument: props.email, argumentName: 'email' },
-            { argument: props.role, argumentName: 'role' }
+            { argument: props.type, argumentName: 'type' }
         ];
 
         const guardResult = Guard.againstNullOrUndefinedBulk(guardedProps);

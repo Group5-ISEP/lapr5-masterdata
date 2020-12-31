@@ -42,10 +42,8 @@ export default class UserService implements IUserService {
                 return Result.fail<IUserDTO>("User not found");
             }
             else {
-                user.firstName = userDTO.email;
-                user.lastName = userDTO.lastName;
                 user.password = userDTO.password;
-                user.role = userDTO.role;
+                user.type = userDTO.type;
                 await this.userRepo.save(user);
 
                 const userDTOResult = UserMap.toDTO(user) as IUserDTO;

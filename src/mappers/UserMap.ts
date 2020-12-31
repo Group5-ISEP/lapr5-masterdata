@@ -14,12 +14,9 @@ export class UserMap extends Mapper<User> {
 
     public static toDTO( user: User): IUserDTO {
         return {
-            id: user.id.toString(),
-            firstName: user.firstName,
-            lastName: user.lastName,
             email: user.email,
             password: user.password,
-            role: user.role
+            type: user.type
         } as IUserDTO;
     }
 
@@ -27,11 +24,9 @@ export class UserMap extends Mapper<User> {
     //const userPasswordOrError = UserPassword.create({value: raw.password, hashed: true});
 
     const userOrError = User.create({
-      firstName: raw.firstName,
-      lastName: raw.lastName,
       email: raw.email,
       password: raw.password,
-      role: raw.role,
+      type: raw.type,
     }, new UniqueEntityID(raw.base_user_id))
 
     userOrError.isFailure ? console.log(userOrError.error) : '';
@@ -41,12 +36,9 @@ export class UserMap extends Mapper<User> {
 
   public static toPersistence (user: User): any {
     const a = {
-      base_user_id: user.id.toString(),
       email: user.email,
       password: user.password,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      role: user.role,
+      type: user.type,
     }
     return a;
   }

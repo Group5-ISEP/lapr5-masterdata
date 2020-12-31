@@ -6,7 +6,6 @@ import { IUserPersistence } from '../dataschema/IUserPersistence';
 import { IUserRepo } from "./IRepos/IUserRepo";
 import { User } from "../domain/user";
 import { UserId } from "../domain/userId";
-import { UserEmail } from "../domain/userEmail";
 import { UserMap } from "../mappers/UserMap";
 
 @Service()
@@ -58,7 +57,7 @@ export default class UserRepo implements IUserRepo {
     }
   }
 
-  public async findByEmail (email: UserEmail | string): Promise<User> {
+  public async findByEmail (email: string): Promise<User> {
     const query = { email: email.toString() };
     const userRecord = await this.userSchema.findOne( query );
 

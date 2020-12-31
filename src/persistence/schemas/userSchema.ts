@@ -3,18 +3,6 @@ import mongoose from 'mongoose';
 
 const User = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: [true, 'Please enter first name'],
-      index: true,
-    },
-
-    lastName: {
-      type: String,
-      required: [true, 'Please enter last name'],
-      index: true,
-    },
-
     email: {
       type: String,
       lowercase: true,  
@@ -26,7 +14,7 @@ const User = new mongoose.Schema(
 
     salt: String,
 
-    role: {
+    type: {
       type: String,
       default: 'user',
     },
