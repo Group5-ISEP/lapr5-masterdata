@@ -45,12 +45,6 @@ export default class UserRepo implements IUserRepo {
         const userCreated = await this.userSchema.create(rawUser);
 
         return UserMap.toDomain(userCreated);
-      } else {
-        userDocument.firstName = user.firstName;
-        userDocument.lastName = user.lastName;
-        await userDocument.save();
-
-        return user;
       }
     } catch (err) {
       throw err;

@@ -50,10 +50,10 @@ export default class UserController implements IUserController {
     public async login(req: Request, res: Response, next: NextFunction) {
         try {
 
-            if (middlewares.isAuth) {
+            /*if (middlewares.isAuth) {
                 console.error("There is already a logged user in this session");
                 return res.status(401).send("Error: Already logged in user. Log out before logging in");
-            }
+            }*/
 
             const userOrError = await this.userServiceInstance.getByEmail(req.body.email);
 
