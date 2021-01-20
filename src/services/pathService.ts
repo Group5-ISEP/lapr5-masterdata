@@ -19,6 +19,7 @@ export default class PathService implements IPathService {
             const pathOrError = Path.create(pathDTO);
 
             if (pathOrError.isFailure) {
+                console.log("failed creating path");
                 return Result.fail<IPathDTO>(pathOrError.errorValue());
             }
 
