@@ -8,7 +8,7 @@ export default class MockNodeRepo implements INodeRepo {
     constructor() { }
 
     public async getNodeByShortName(shortName: string): Promise<Node> {
-        return this.list.find(node => node.shortName === shortName)[0];
+        return this.list.find(node => node.shortName === shortName);
     }
 
     public async save(node: Node): Promise<Node> {

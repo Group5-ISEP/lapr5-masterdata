@@ -261,4 +261,41 @@ describe("Node Service Test", () => {
             expect(result.length).toBe(2)
         })
     })
+
+    describe("Get node test", () => {
+        const node1: INodeDTO = {
+            id: undefined,
+            name: "Fonte da Moura",
+            shortName: "FTM",
+            isDepot: false,
+            isReliefPoint: false,
+            latitude: 41.163665,
+            longitude: -8.662789
+        }
+
+        const mockRepo = new MockNodeRepo()
+
+        beforeAll(() => {
+            mockRepo.list.push(NodeMap.toDomain(node1))
+        })
+
+        it("should return expected node", async () => {
+
+            const service = new NodeService(mockRepo)
+
+            const result = await service.getNode("FTM")
+
+            expect(result.isSuccess).toBeTruthy()
+            expect(result.getValue().shortName === "FTM")
+        })
+
+        it("should return failure if node doesnt exist", async () => {
+
+            const service = new NodeService(mockRepo)
+
+            const result = await service.getNode("SOMETHING")
+
+            expect(result.isSuccess).toBeFalsy()
+        })
+    })
 })
