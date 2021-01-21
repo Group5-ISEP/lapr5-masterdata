@@ -37,4 +37,18 @@ export default class NodeController implements INodeController {
             return next(e);
         }
     };
+
+    public async getNode(req: Request, res: Response, next: NextFunction) {
+
+        try {
+            const nodeOrError = await this.nodeServiceInstance.getNode(req.params.id);
+            if (nodeOrError.isFailure)
+                return res.status(409).send(nodeOrError.errorValue())
+            const nodeDTO = nodeOrError.getValue();
+            return res.status(200).json(nodeDTO);
+        }
+        catch (e) {
+            return next(e);
+        }
+    };
 }

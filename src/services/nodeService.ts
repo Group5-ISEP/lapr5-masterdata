@@ -14,6 +14,7 @@ export default class NodeService implements INodeService {
         @Inject(config.repos.node.name) private nodeRepoInstance: INodeRepo
     ) { }
 
+
     public async createNode(nodeDTO: INodeDTO): Promise<Result<INodeDTO>> {
         try {
             const nodeOrError = Node.create(nodeDTO);
@@ -39,6 +40,17 @@ export default class NodeService implements INodeService {
             const nodes = await this.nodeRepoInstance.getNodes();
             const nodeDtoList = nodes.map(node => NodeMap.toDTO(node))
             return Result.ok(nodeDtoList)
+        } catch (e) {
+            return e
+        }
+    }
+
+    public async getNode(shortName: string): Promise<Result<INodeDTO>> {
+        try {
+            const node = await this.nodeRepoInstance.getNodeByShortName(shortName);
+            if (node === null)
+                return Result.fail("Node not found");
+            return Result.ok(NodeMap.toDTO(node));
         } catch (e) {
             return e
         }

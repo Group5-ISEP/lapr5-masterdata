@@ -5,4 +5,5 @@ import INodeDTO from "../../dto/INodeDTO";
 export default interface INodeService {
     createNode(node: INodeDTO): Promise<Result<INodeDTO>>;
     listNodes(): Promise<Result<INodeDTO[]>>;
+    getNode(shortName:string): Promise<Result<INodeDTO>>;
 }

@@ -44,4 +44,14 @@ export default class NodeRepo implements INodeRepo {
         }
 
     }
+
+    public async getNodeByShortName(shortName: string): Promise<Node> {
+
+        try {
+            const nodeDocument = await this.nodeSchema.findOne({ shortName: shortName });
+            return NodeMap.toDomain(nodeDocument);
+        } catch (err) {
+            throw err;
+        }
+    }
 }

@@ -31,4 +31,7 @@ export default (app: Router) => {
 
     route.get('',
         (req, res, next) => ctrl.listNodes(req, res, next));
+
+    route.get('/:id',
+        (req, res, next) => ctrl.getNode(req, res, next));
 }
