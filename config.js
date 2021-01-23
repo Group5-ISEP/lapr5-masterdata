@@ -69,7 +69,11 @@ export default {
     user: {
         name: "UserController",
         path: "../controllers/userController"
-    }
+      },
+      import: {
+          name: "ImportController",
+          path: "../controllers/importController"
+      }
   },
 
   repos: {
@@ -135,6 +139,10 @@ export default {
       user: {
           name: "UserService",
           path: "../services/userService"
+      },
+      import: {
+          name: "ImportService",
+          path: "../services/importService"
       }
   },
 };
