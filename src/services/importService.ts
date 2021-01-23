@@ -64,7 +64,7 @@ export default class ImportService implements IImportService {
             }
             var file = files.file;
             var stream = fs.createReadStream(file.path);
-            var xml = new XmlStream(stream);/*
+            var xml = new XmlStream(stream);
             //We'll first retrieve the VehicleTypes from the XML file
             xml.preserve('VehicleType', true);
             xml.collect('subitem');
@@ -77,7 +77,7 @@ export default class ImportService implements IImportService {
             xml.preserve('Line', true);
             xml.collect('subitem');
             xml.on('endElement: Line', (item) => this.createLine(item));
-            //Now the paths*/
+            //Now the paths
             xml.preserve('Path', true);
             xml.collect('subitem');
             xml.on('endElement: Path', (item) => this.createPath(item));
