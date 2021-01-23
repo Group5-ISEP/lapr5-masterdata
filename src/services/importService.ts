@@ -32,6 +32,7 @@ export default class ImportService implements IImportService {
     public async importFile(req: Request): Promise<Result<string>> {
         try {
             //createdVehicles = createdNodes = createdLines = createdPaths = 0;
+            console.log("Importing data file");
 
             var form = new IncomingForm();
 
@@ -189,14 +190,14 @@ export default class ImportService implements IImportService {
 
     private async constructSegments(sl: any): Promise<Result<ISegmentDTO[]>> {
         try {
-            console.log(sl);
+            //console.log(sl);
 
             var segments = [];
 
             for (var i = 0; i < sl.length-1; i++) {
                 segments.push({
-                    startNode: sl[i].key,
-                    endNode: sl[i + 1].key,
+                    startNode: sl[i].Node,
+                    endNode: sl[i + 1].Node,
                     distance: sl[i + 1].Distance,
                     duration: sl[i + 1].Duration,
                     order: i + 1
@@ -219,7 +220,7 @@ export default class ImportService implements IImportService {
             else IsEmpty = true;
 
             var direction: string;
-            if (path.direction == "Return") direction = "from";
+            if (path.direction == "return") direction = "from";
             else direction = "to";
 
             var pathNodeList = [];
@@ -230,13 +231,14 @@ export default class ImportService implements IImportService {
                 pathNodeList.push(pathNodes[actualpn]['$']);
             }
 
-            var firstNode = pathNodeList[0].key;
-            var lastNode = pathNodeList[pathNodeList.length-1].key;
-
             var segmentList = await this.constructSegments(pathNodeList);
             if (segmentList.isFailure) return Result.fail<IPathDTO>(segmentList.errorValue());
-
             //console.log(segmentList.getValue());
+
+            var segments = segmentList.getValue();
+
+            var firstNode = segments[0].startNode;
+            var lastNode = segments[segments.length-1].endNode;
 
             var pDTO: IPathDTO = {
                 id: path.key,
@@ -248,7 +250,7 @@ export default class ImportService implements IImportService {
                 lastNode: lastNode
             }
 
-            console.log(pDTO);
+            //console.log(pDTO);
             const pDTOorError = await this.pathServiceInstance.createPath(pDTO);
 
             if (pDTOorError.isFailure) {
