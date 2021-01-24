@@ -14,9 +14,7 @@ import IVehicleTypeDTO from '../dto/IVehicleTypeDTO';
 import INodeDTO from '../dto/INodeDTO';
 import ILineDTO from '../dto/ILineDTO';
 import IPathDTO from '../dto/IPathDTO';
-import { Line } from '../domain/line';
 import ISegmentDTO from '../dto/ISegmentDTO';
-import { forEach } from 'lodash';
 
 
 @Service()
