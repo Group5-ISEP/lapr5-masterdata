@@ -15,6 +15,7 @@ import INodeDTO from '../dto/INodeDTO';
 import ILineDTO from '../dto/ILineDTO';
 import IPathDTO from '../dto/IPathDTO';
 import ISegmentDTO from '../dto/ISegmentDTO';
+import { ImportCreations } from '../utils/ImportCreations';
 
 
 @Service()
@@ -27,29 +28,19 @@ export default class ImportService implements IImportService {
         @Inject(config.services.node.name) private nodeServiceInstance: INodeService
     ) { }
 
-    public async importFile(req: Request): Promise<Result<string>> {
+    
+    public async importFile(req: Request): Promise < Result < string >> {
         try {
-            //createdVehicles = createdNodes = createdLines = createdPaths = 0;
+            ImportCreations.init();
+
             console.log("Importing data file");
 
             var form = new IncomingForm();
 
-            form.parse(req, (err, fields, files) => this.fileParser(err, fields, files));
+            await form.parse(req, (err, fields, files) => this.fileParser(err, fields, files));
 
-            var result;
-            /*
-            if (createdVehicles == 0 && createdNodes == 0 && createdLines == 0 && createdPaths == 0) {
-                result = "No new objects created";
-            }
-            else {
-                result = "Created " + createdVehicles + " new Vehicle Types\n" +
-                    "Created " + createdNodes + " new Nodes\n" +
-                    "Created " + createdLines + " new Lines\n" +
-                    "Created " + createdPaths + " new Paths\n";
-            }
-            */
-            result = "File succesfully analyzed";
-            return Result.ok(result);
+            console.log(ImportCreations.get());
+            return Result.ok(ImportCreations.get());
         } catch (e) {
             throw e;
         }
@@ -113,7 +104,8 @@ export default class ImportService implements IImportService {
                 console.error(vtDTOorError.errorValue());
                 return Result.fail<IVehicleTypeDTO>(vtDTOorError.errorValue());
             }
-            //createdVehicles++;
+
+            ImportCreations.add("vehicleType");
             return Result.ok<IVehicleTypeDTO>(vtDTOorError.getValue());
         } catch (e) {
             throw e;
@@ -146,7 +138,8 @@ export default class ImportService implements IImportService {
                 console.error(error);
                 return Result.fail<INodeDTO>(error);
             }
-            //createdNodes++;
+
+            ImportCreations.add("node");
             return Result.ok<INodeDTO>(nDTOorError.getValue());
         } catch (e) {
             throw e;
@@ -171,7 +164,7 @@ export default class ImportService implements IImportService {
                 allowedVehicleTypes: []
             }
 
-            console.log(lDTO);
+            //console.log(lDTO);
             const lDTOorError = await this.lineServiceInstance.createLine(lDTO);
 
             if (lDTOorError.isFailure) {
@@ -179,7 +172,8 @@ export default class ImportService implements IImportService {
                 console.error(error);
                 return Result.fail<ILineDTO>(error);
             }
-            //createdLines++;
+
+            ImportCreations.add("line");
             return Result.ok<ILineDTO>(lDTOorError.getValue());
         } catch (e) {
             throw e;
@@ -256,7 +250,8 @@ export default class ImportService implements IImportService {
                 console.error(error);
                 return Result.fail<IPathDTO>(error);
             }
-            //createdLines++;
+
+            ImportCreations.add("path");
             return Result.ok<IPathDTO>(pDTOorError.getValue());
         } catch (e) {
             throw e;
