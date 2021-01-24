@@ -11,7 +11,7 @@ async function startServer() {
 
   var cors = require('cors')
 
-  app.options('*', cors())
+  app.use(cors())
 
   await require('./loaders').default({ expressApp: app });
 
