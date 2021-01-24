@@ -50,7 +50,17 @@ export default async ({ expressApp }) => {
   const pathService = {
     name: config.services.path.name,
     path: config.services.path.path
-  }
+    }
+
+    const importController = {
+        name: config.controller.import.name,
+        path: config.controller.import.path
+    }
+
+    const importService = {
+        name: config.services.import.name,
+        path: config.services.import.path
+    }
 
   const driverTypeSchema = {
     // compare with the approach followed in repos and services
@@ -165,7 +175,8 @@ export default async ({ expressApp }) => {
         vehicleTypeController,
         nodeController,
         pathController,
-        lineController
+        lineController,
+        importController
     ],
     repos: [
         roleRepo,
@@ -183,7 +194,8 @@ export default async ({ expressApp }) => {
         vehicleTypeService,
         pathService,
         nodeService,
-        lineService
+        lineService,
+        importService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

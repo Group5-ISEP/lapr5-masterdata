@@ -7,6 +7,7 @@ import driverTypes from './routes/driverTypeRoute';
 import vehicleTypes from './routes/vehicleTypeRoute';
 import node from './routes/nodeRoute';
 import line from './routes/lineRoute';
+import upload from './routes/importRoute';
 
 export default () => {
 	const app = Router();
@@ -18,6 +19,7 @@ export default () => {
 	driverTypes(app);
 	vehicleTypes(app)
 	node(app);
-	line(app)
+	line(app);
+	upload(app);
 	return app
 }
